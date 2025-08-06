@@ -4,479 +4,1203 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohinder Batra - QA Automation Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #06b6d4;
+            --bg: #0f172a;
+            --bg-light: #1e293b;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 100%);
+            color: var(--white);
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
         }
-        
+
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 1rem;
         }
-        
-        .resume {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-            animation: slideUp 0.8s ease-out;
+
+        /* Glass morphism effect */
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
+
+        /* Header Section */
         .header {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            padding: 40px;
+            padding: 2rem;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 2rem;
         }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
-            animation: float 20s infinite linear;
-            pointer-events: none;
-        }
-        
-        @keyframes float {
-            0% { transform: translateX(-50px) translateY(-50px) rotate(0deg); }
-            100% { transform: translateX(-50px) translateY(-50px) rotate(360deg); }
-        }
-        
+
         .profile-img {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 4px solid white;
-            margin: 0 auto 20px;
-            background: #ecf0f1;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
-            color: #34495e;
-            position: relative;
-            z-index: 1;
+            margin: 0 auto 1.5rem;
+            font-size: 3rem;
+            color: var(--white);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
         }
-        
+
         .header h1 {
             font-size: 2.5rem;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-family: 'JetBrains Mono', monospace;
         }
-        
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
-        
+
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 1rem;
+            background: var(--glass);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
         }
-        
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .contact-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        /* Main Content */
         .main-content {
-            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
         }
-        
+
         .section {
-            margin-bottom: 40px;
+            padding: 2rem;
+            margin-bottom: 2rem;
         }
-        
-        .section h2 {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #3498db;
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .section-icon {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+
+        /* About Section */
+        .about-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Experience Timeline */
+        .timeline {
             position: relative;
+            padding-left: 2rem;
         }
-        
-        .section h2::after {
+
+        .timeline::before {
             content: '';
             position: absolute;
-            bottom: -3px;
+            left: 1rem;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: var(--glass);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            margin-left: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.3rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            border: 2px solid var(--bg);
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .company-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .company-name {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .job-date {
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .job-description ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .job-description li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .job-description li::before {
+            content: '▶';
+            position: absolute;
             left: 0;
-            width: 50px;
-            height: 3px;
-            background: #e74c3c;
+            color: var(--accent);
+        }
+
+        /* Core Strengths */
+        .strengths-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .strengths-list li {
+            position: relative;
+            padding: 0.8rem 0 0.8rem 2.5rem;
+            margin-bottom: 0.8rem;
+            color: rgba(255, 255, 255, 0.85);
+            border-left: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .strengths-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0.8rem;
+            width: 1.8rem;
+            height: 1.8rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .strengths-list li:hover {
+            border-left-color: var(--accent);
+            transform: translateX(5px);
+            color: var(--white);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .skill-group {
+            padding: 1.5rem;
+            background: var(--glass);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .skill-group:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.15);
+        }
+
+        .skill-group h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-group h3 i {
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Education Section */
+        .education-item {
+            padding: 1.5rem;
+            background: var(--glass);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.15);
+        }
+
+        .education-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+        }
+
+        .education-details {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        /* Full-width sections */
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0.5rem;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .header {
+                padding: 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .profile-img {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-item {
+                padding: 0.8rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .timeline {
+                padding-left: 1.5rem;
+            }
+
+            .timeline-item {
+                margin-left: 1rem;
+                padding: 1.2rem;
+            }
+
+            .timeline-item::before {
+                left: -1.8rem;
+            }
+
+            .company-info {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+
+            .skill-tags {
+                gap: 0.6rem;
+            }
+
+            .skill-tag {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0.25rem;
+            }
+
+            .header {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            .timeline-item {
+                padding: 1rem;
+            }
+
+            .skill-group {
+                padding: 1rem;
+            }
+            
+            .compact-skills-layout {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .compact-subtitle {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 0.9rem;
+                color: var(--accent);
+                margin-bottom: 0.8rem;
+            }
+            
+            .compact-strengths-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .compact-strengths-list li {
+                padding: 0.3rem 0;
+                font-size: 0.85rem;
+                color: var(--text-light);
+                position: relative;
+                padding-left: 1rem;
+            }
+            
+            .compact-strengths-list li::before {
+                content: "✓";
+                position: absolute;
+                left: 0;
+                color: var(--accent);
+                font-weight: bold;
+            }
+            
+            .compact-skill-row {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 0.6rem;
+                flex-wrap: wrap;
+            }
+            
+            .compact-skill-row strong {
+                color: var(--secondary);
+                font-size: 0.8rem;
+                min-width: 50px;
+            }
+            
+            .skill-tag-small {
+                background: linear-gradient(135deg, var(--primary), var(--secondary));
+                color: white;
+                padding: 0.2rem 0.6rem;
+                border-radius: 12px;
+                font-size: 0.7rem;
+                font-weight: 500;
+                transition: all 0.3s ease;
+            }
+            
+            .skill-tag-small:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+            }
         }
         
-        .experience-item, .education-item {
-            margin-bottom: 25px;
-            padding: 20px;
-            border-left: 4px solid #3498db;
-            border-radius: 0 8px 8px 0;
-            background: #f8f9fa;
+        /* Desktop layout for compact skills */
+        @media (min-width: 769px) {
+            .compact-skills-layout {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        /* Experience Cards */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .experience-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(99, 102, 241, 0.2);
+            border-color: var(--accent);
+        }
+        
+        .current-role {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid var(--accent);
+        }
+        
+        .role-header {
+            margin-bottom: 1rem;
+        }
+        
+        .role-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.8rem;
+        }
+        
+        .role-badge.current {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: white;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .role-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+        
+        .company-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .company {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 1rem;
+        }
+        
+        .duration {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .role-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.6rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
             transition: all 0.3s ease;
         }
         
-        .experience-item:hover, .education-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        .highlight-item:hover {
+            background: rgba(6, 182, 212, 0.1);
+            transform: translateX(4px);
         }
         
-        .experience-item h3, .education-item h3 {
-            color: #2c3e50;
-            font-size: 1.3rem;
-            margin-bottom: 5px;
+        .highlight-item i {
+            color: var(--accent);
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
         }
         
-        .company, .school {
-            color: #3498db;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .date {
-            color: #7f8c8d;
+        .highlight-item span {
+            color: var(--text-light);
             font-size: 0.9rem;
-            margin-bottom: 10px;
         }
         
-        .skills-grid {
+        .role-summary {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
+        
+        .key-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tech-tag {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .tech-tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Desktop layout for experience cards */
+        @media (min-width: 1024px) {
+            .experience-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            
+            .current-role {
+                grid-column: 1 / -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .experience-card {
+                padding: 1.2rem;
+            }
+            
+            .company-details {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
+            }
+            
+            .role-highlights {
+                gap: 0.6rem;
+            }
+            
+            .highlight-item {
+                padding: 0.5rem;
+            }
+        }
+        
+        /* Interactive Skills Styles */
+        .interactive-skills-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .interactive-subtitle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+        
+        .interactive-subtitle i {
+            font-size: 1rem;
+        }
+        
+        /* Interactive Strengths */
+        .interactive-strengths-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .strength-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .strength-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .strength-item:hover {
+            transform: translateX(8px);
+            background: rgba(99, 102, 241, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+        }
+        
+        .strength-item:hover::before {
+            left: 100%;
+        }
+        
+        .strength-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .strength-item:hover i {
+            transform: scale(1.2) rotate(5deg);
+            color: var(--secondary);
+        }
+        
+        .strength-item span {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .strength-item:hover span {
+            color: var(--white);
+        }
+        
+        /* Interactive Skills */
+        .interactive-skill-groups {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
         }
         
         .skill-category {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border-top: 4px solid #3498db;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1rem;
+            transition: all 0.3s ease;
         }
         
-        .skill-category h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
+        .skill-category:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+        
+        .category-header i {
+            font-size: 1rem;
         }
         
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 0.6rem;
         }
         
-        .skill-tag {
-            background: #3498db;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-        }
-        
-        .skill-tag:hover {
-            background: #2980b9;
-            transform: scale(1.05);
-        }
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        
-        .project-card {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #e9ecef;
-            transition: all 0.3s ease;
+        .interactive-skill-tag {
             position: relative;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
             overflow: hidden;
         }
         
-        .project-card::before {
+        /* Skill levels with different colors */
+        .interactive-skill-tag[data-level="expert"] {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(22, 163, 74, 0.2));
+            color: #22c55e;
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+        
+        .interactive-skill-tag[data-level="advanced"] {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(79, 70, 229, 0.2));
+            color: var(--accent);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+        
+        .interactive-skill-tag[data-level="intermediate"] {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.2));
+            color: #fbbf24;
+            border-color: rgba(251, 191, 36, 0.3);
+        }
+        
+        /* Hover effects */
+        .interactive-skill-tag[data-level="expert"]:hover {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(34, 197, 94, 0.4);
+        }
+        
+        .interactive-skill-tag[data-level="advanced"]:hover {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+        }
+        
+        .interactive-skill-tag[data-level="intermediate"]:hover {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(251, 191, 36, 0.4);
+        }
+        
+        /* Skill level indicators */
+        .interactive-skill-tag::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
+            height: 2px;
+            background: currentColor;
+            transition: width 0.4s ease;
+        }
+        
+        .interactive-skill-tag[data-level="expert"]::after {
             width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #3498db, #e74c3c, #f39c12);
         }
         
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        .interactive-skill-tag[data-level="advanced"]::after {
+            width: 75%;
         }
         
-        .project-card h3 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
+        .interactive-skill-tag[data-level="intermediate"]::after {
+            width: 50%;
         }
         
-        .project-card p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-        
-        .tech-tag {
-            background: #e9ecef;
-            color: #495057;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 500;
+        /* Desktop layout for interactive skills */
+        @media (min-width: 769px) {
+            .interactive-skills-layout {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
         }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
+            .strength-item {
+                padding: 0.6rem;
+                gap: 0.8rem;
             }
             
-            .header {
-                padding: 30px 20px;
+            .skill-category {
+                padding: 0.8rem;
             }
             
-            .header h1 {
-                font-size: 2rem;
+            .interactive-skill-tag {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.75rem;
             }
-            
-            .contact-info {
-                gap: 15px;
-            }
-            
-            .main-content {
-                padding: 20px;
-            }
-            
-            .skills-grid, .projects-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .download-btn {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="resume">
-            <header class="header">
-                <div class="profile-img">👤</div>
-                <h1>Mohinder Batra</h1>
-                <p>QA Automation Engineer</p>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <span>📧</span>
-                        <span>john.doe@email.com</span>
+        <!-- Header Section -->
+        <header class="header glass">
+            <div class="profile-img">
+                <i class="fas fa-user-tie"></i>
+            </div>
+            <h1>Mohinder Batra</h1>
+            <div class="subtitle">QA Automation Engineer</div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:mohinderbatra@hotmail.com" class="contact-link">Send an Email</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/mohinder-batra/" target="_blank" class="contact-link">Connect on LinkedIn</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- About Section -->
+            <section class="section glass">
+                <h2 class="section-title">
+                    <div class="section-icon">
+                        <i class="fas fa-user-circle"></i>
                     </div>
-                    <div class="contact-item">
-                        <span>📱</span>
-                        <span>(555) 123-4567</span>
+                    About Me
+                </h2>
+                <p class="about-text">
+                    More than 10 Years of IT experience that encompasses automation testing in open source automation tools. Adept with functional testing, designing, planning and reporting to the stakeholders. Passion to learn new skills/technologies and help clients on their automation testing journey. Extensive experience working in agile methodologies and STLC processes. Ability to oversee and manage a team of individuals while ensuring timely completion of project deadlines.
+                </p>
+            </section>
+
+            <!-- Core Strengths & Technical Skills Section -->
+            <section class="section glass">
+                <h2 class="section-title">
+                    <div class="section-icon">
+                        <i class="fas fa-star"></i>
                     </div>
-                    <div class="contact-item">
-                        <span>🌐</span>
-                        <span>linkedin.com/in/johndoe</span>
+                    Core Strengths & Skills
+                </h2>
+                
+                <div class="interactive-skills-layout">
+                    <!-- Key Strengths Column -->
+                    <div class="strengths-column">
+                        <h3 class="interactive-subtitle">
+                            <i class="fas fa-check-circle"></i>
+                            Key Strengths
+                        </h3>
+                        <div class="interactive-strengths-list">
+                            <div class="strength-item">
+                                <i class="fas fa-robot"></i>
+                                <span>BDD Framework & CI/CD Automation</span>
+                            </div>
+                            <div class="strength-item">
+                                <i class="fas fa-sync-alt"></i>
+                                <span>Agile & STLC Methodologies</span>
+                            </div>
+                            <div class="strength-item">
+                                <i class="fas fa-cloud"></i>
+                                <span>Salesforce & LeanFT Automation</span>
+                            </div>
+                            <div class="strength-item">
+                                <i class="fas fa-code"></i>
+                                <span>UI/API Testing (Selenium, Java)</span>
+                            </div>
+                            <div class="strength-item">
+                                <i class="fas fa-server"></i>
+                                <span>Production Environment Management</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <span>📍</span>
-                        <span>Melbourne, VIC</span>
+                    
+                    <!-- Technical Skills Column -->
+                    <div class="skills-column">
+                        <h3 class="interactive-subtitle">
+                            <i class="fas fa-tools"></i>
+                            Technical Skills
+                        </h3>
+                        <div class="interactive-skill-groups">
+                            <div class="skill-category">
+                                <div class="category-header">
+                                    <i class="fas fa-wrench"></i>
+                                    <strong>Tools</strong>
+                                </div>
+                                <div class="skill-tags">
+                                    <span class="interactive-skill-tag" data-level="expert">Selenium</span>
+                                    <span class="interactive-skill-tag" data-level="expert">Jenkins</span>
+                                    <span class="interactive-skill-tag" data-level="advanced">Jira</span>
+                                    <span class="interactive-skill-tag" data-level="expert">IntelliJ</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <div class="category-header">
+                                    <i class="fas fa-infinity"></i>
+                                    <strong>CI/CD</strong>
+                                </div>
+                                <div class="skill-tags">
+                                    <span class="interactive-skill-tag" data-level="expert">Git</span>
+                                    <span class="interactive-skill-tag" data-level="advanced">Maven</span>
+                                    <span class="interactive-skill-tag" data-level="expert">Cucumber</span>
+                                    <span class="interactive-skill-tag" data-level="advanced">AWS</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <div class="category-header">
+                                    <i class="fas fa-laptop-code"></i>
+                                    <strong>Tech</strong>
+                                </div>
+                                <div class="skill-tags">
+                                    <span class="interactive-skill-tag" data-level="expert">Java</span>
+                                    <span class="interactive-skill-tag" data-level="advanced">Salesforce</span>
+                                    <span class="interactive-skill-tag" data-level="intermediate">JMeter</span>
+                                    <span class="interactive-skill-tag" data-level="advanced">LeanFT</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <a href="Resume_MohinderBatra.pdf" class="download-btn">
-                    <span>📄</span>
-                    Download PDF Resume
-                </a>
-            </header>
-            
-            <main class="main-content">
-                <section class="section">
-                    <h2>About Me</h2>
-                    <p>Around 8 Years of IT experience that encompasses automation testing in open source automation tools. Adept with functional testing, designing, planning and reporting to the stakeholders. Passion to learn new skills/technologies and help clients on their automation testing journey. Extensive experience working in agile methodologies and STLC processes. Ability to oversee and manage a team of individuals while ensuring timely completion of project deadlines.</p>
-                </section>
+            </section>
+
+            <!-- Professional Experience Section -->
+            <section class="section glass full-width">
+                <h2 class="section-title">
+                    <div class="section-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    Professional Experience
+                </h2>
                 
-                <section class="section">
-                    <h2>Experience</h2>
-                    <div class="experience-item">
-                        <h3>QA Automation Engineer</h3>
-                        <div class="company">Movember</div>
-                        <div class="date">June 2022 - Present</div>
-                        <ul>
-                            <li>Automation of user stories in an agile environment using BDD framework.</li>
-                            <li>Worked in Functional and Non-Functional testing area with different set of tools including JMeter, Mobile Testing and Integration Automation Testing using Selenium.</li>
-                            <li>Worked with various CI/CD tools such as AWS Pipeline, Jenkins, and Git.</li>
-                        </ul>
-                    </div>
-                    <div class="experience-item">
-                        <h3>System Testing Automation Lead</h3>
-                        <div class="company">NBN</div>
-                        <div class="date">Sep 2020 - June 2022</div>
-                        <ul>
-                            <li>Automation of user stories in an agile environment using BDD framework with Java as a programming language.</li>
-                            <li>Automated various Salesforce CRM modules: Salesforce CRM systems is used for site service feasibility, ordering and Service Assurance through single RSP portal.</li>
-                            <li>Using LeanFT BDD for end-to-end automation of RSP workflow in salesforce and other integrated system such as Appian, BRM and Remedy.</li>
-                            <li>REST based API testing and automation using Selenium.</li>
-                            <li>Managing test data in different environments using data loader and defect reporting/tracking using the JIRA tool.</li>
-                            <li>Setting up of Jenkins jobs/pipelines for testing modules.</li>
-                            <li>Identifying all the improvement in CI/CD space.</li>
-                            <li>Training the support teams on any Business-as-Usual process.</li>
-                        </ul>
-                    </div>
-                    <div class="experience-item">
-                        <h3>Automation Test Analyst</h3>
-                        <div class="company">NBN</div>
-                        <div class="date">May 2018 - Aug 2020</div>
-                        <ul>
-                            <li>Automation of open-source Web Applications -Test & Diagnostics and Jigsaw applications used in NBN.</li>
-                            <li>Worked on automation handling several functional scenarios.</li>
-                            <li>Automation of user stories in an agile environment using BDD Framework.</li>
-                            <li>Defect reporting/tracking using the JIRA tool.</li>
-                            <li>Setting up of Jenkins jobs/pipelines for testing modules.</li>
-                            <li>Identifying all the improvement in CI/CD space.</li>
-                        </ul>
-                    </div>
-                    <div class="experience-item">
-                        <h3>Automation Test Engineer</h3>
-                        <div class="company">Amazon WholeFooods (USA)</div>
-                        <div class="date">July 2015 - Apr 2018</div>
-                        <ul>
-                            <li>Worked in migration of automation tasks from UFT framework to Selenium open-source framework.</li>
-                            <li>Creating Pipelines on Jenkins and automation build and deployment.</li>
-                            <li>Creating design for Test Automation, test planning and reporting.</li>
-                            <li>Liaise with the developers to gather the requirement & design during the development phase.</li>
-                            <li>Rebuilding Selenium framework from scratch.</li>
-                        </ul>
-                    </div>
-                </section>
-                
-                <section class="section">
-                    <h2>Core Strengths</h2>
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <div class="skill-tags" style="display: block;">
-                                <ul>
-                                    <li>Automation of User Stories using BDD Framework in a CI/CD pipeline.</li>
-                                    <li>Certified experience working in Agile environment.</li>
-                                    <li>Experience working in Salesforce Products(NBN Select, Enterprise Ethernet) and automating the manual processes using LeanFT.</li>
-                                    <li>Experience working with UI and API testing (using Selenium and Java).</li>
-                                    <li>Experience working with CI/CD pipeline using Jenkins.</li>
-                                    <li>Handful of experience in handling prod and non-production environments.</li>
-                                    <li>Develop and maintain documentation such as, technical design documents, test planning and bug reporting to the stakeholders.</li>
-                                </ul>
+                <div class="experience-grid">
+                    <!-- Current Role -->
+                    <div class="experience-card current-role">
+                        <div class="role-header">
+                            <div class="role-badge current">Current</div>
+                            <h3 class="role-title">QA Automation Engineer</h3>
+                            <div class="company-details">
+                                <span class="company">Movember</span>
+                                <span class="duration">June 2022 - Present</span>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <section class="section">
-                    <h2>Skills</h2>
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <h3>IDE & Tools</h3>
-                            <div class="skill-tags">
-                                <span class="skill-tag">IntelliJ</span>
-                                <span class="skill-tag">Postman</span>
-                                <span class="skill-tag">Selenium WebDriver</span>
-                                <span class="skill-tag">LeanFT</span>
-                                <span class="skill-tag">Jira</span>
-                                <span class="skill-tag">Confluence</span>
+                        <div class="role-summary">
+                            Leading QA automation initiatives in an agile environment using modern testing frameworks. Specializing in end-to-end automation, performance testing, and cloud infrastructure automation.
+                        </div>
+                        <div class="role-highlights">
+                            <div class="highlight-item">
+                                <i class="fas fa-cogs"></i>
+                                <span>Cypress Automation using Javascript, AWS Cloudformation, K6 Load Testing</span>
                             </div>
                         </div>
-                        <div class="skill-category">
-                            <h3>CI/CD</h3>
-                            <div class="skill-tags">
-                                <span class="skill-tag">Cucumber</span>
-                                <span class="skill-tag">Jenkins</span>
-                                <span class="skill-tag">TortoiseSVN</span>
-                                <span class="skill-tag">Git</span>
-                                <span class="skill-tag">Maven</span>
-                            </div>
-                        </div>
-                        <div class="skill-category">
-                            <h3>Others</h3>
-                            <div class="skill-tags">
-                                <span class="skill-tag">Java</span>
-                                <span class="skill-tag">Salesforce Products</span>
-                                <span class="skill-tag">Enterprise Ethernet</span>
-                                <span class="skill-tag">NBN Select</span>
-                                <span class="skill-tag">Jigsaw</span>
-                            </div>
+                        <div class="key-tech">
+                            <span class="tech-tag">Cypress</span>
+                            <span class="tech-tag">AWS CloudFormation</span>
+                            <span class="tech-tag">K6</span>
+                            <span class="tech-tag">BDD</span>
+                            <span class="tech-tag">Jenkins</span>
+                            <span class="tech-tag">Git</span>
                         </div>
                     </div>
-                </section>
-                
-                <section class="section">
-                    <h2>Education</h2>
-                    <div class="education-item">
-                        <h3>Computer Science & Engineering</h3>
-                        <p>CGPA: 7.96</p>
+                    
+                    <!-- Previous Roles -->
+                    <div class="experience-card">
+                        <div class="role-header">
+                            <h3 class="role-title">System Testing Automation Lead</h3>
+                            <div class="company-details">
+                                <span class="company">NBN</span>
+                                <span class="duration">Sep 2020 - June 2022</span>
+                            </div>
+                        </div>
+                        <div class="role-summary">
+                            Led automation of Salesforce CRM modules using LeanFT BDD. Managed end-to-end RSP workflow automation and CI/CD improvements.
+                        </div>
+                        <div class="key-tech">
+                            <span class="tech-tag">Salesforce</span>
+                            <span class="tech-tag">LeanFT</span>
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Jenkins</span>
+                        </div>
                     </div>
-                </section>
-            </main>
-        </div>
+                    
+                    <div class="experience-card">
+                        <div class="role-header">
+                            <h3 class="role-title">Automation Test Analyst</h3>
+                            <div class="company-details">
+                                <span class="company">NBN</span>
+                                <span class="duration">May 2018 - Aug 2020</span>
+                            </div>
+                        </div>
+                        <div class="role-summary">
+                            Automated open-source web applications including Test & Diagnostics and Jigsaw. Implemented BDD framework and CI/CD improvements.
+                        </div>
+                        <div class="key-tech">
+                            <span class="tech-tag">BDD</span>
+                            <span class="tech-tag">Jigsaw</span>
+                            <span class="tech-tag">Jenkins</span>
+                            <span class="tech-tag">Jira</span>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="role-header">
+                            <h3 class="role-title">Automation Test Engineer</h3>
+                            <div class="company-details">
+                                <span class="company">Amazon WholeFoods (USA)</span>
+                                <span class="duration">July 2015 - Apr 2018</span>
+                            </div>
+                        </div>
+                        <div class="role-summary">
+                            Migrated automation from UFT to Selenium framework. Built Jenkins pipelines and designed comprehensive test automation strategies.
+                        </div>
+                        <div class="key-tech">
+                            <span class="tech-tag">Selenium</span>
+                            <span class="tech-tag">UFT</span>
+                            <span class="tech-tag">Jenkins</span>
+                            <span class="tech-tag">Test Planning</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section class="section glass">
+                <h2 class="section-title">
+                    <div class="section-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    Education
+                </h2>
+                <div class="education-item">
+                    <h3 class="education-title">Computer Science & Engineering</h3>
+                    <p class="education-details">
+                        Bachelor's Degree<br>
+                        CGPA: 7.96
+                    </p>
+                </div>
+            </section>
+        </main>
     </div>
 </body>
 </html>
