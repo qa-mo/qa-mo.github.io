@@ -81,6 +81,50 @@
   .pill:hover:not(.active) { background: #f5f5f3; border-color: #bbb; }
 
 
+  /* Moustache loader */
+  .mo-loader {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 1.5rem 0;
+    flex-direction: column;
+  }
+  .mo-loader.active { display: flex; }
+  .mo-loader-text { font-size: 12px; color: #999; margin-top: 4px; }
+  .moustache {
+    width: 60px;
+    height: 24px;
+    position: relative;
+    animation: moGrow 1.2s ease-in-out infinite;
+  }
+  .moustache::before,
+  .moustache::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 28px;
+    height: 20px;
+    border-bottom: 4px solid #111;
+    border-radius: 0 0 50% 50%;
+  }
+  .moustache::before {
+    left: 0;
+    transform: rotate(-8deg);
+    border-left: 4px solid #111;
+    border-bottom-left-radius: 60% 80%;
+  }
+  .moustache::after {
+    right: 0;
+    transform: rotate(8deg);
+    border-right: 4px solid #111;
+    border-bottom-right-radius: 60% 80%;
+  }
+  @keyframes moGrow {
+    0%, 100% { transform: scaleX(1); opacity: 0.7; }
+    50% { transform: scaleX(1.15); opacity: 1; }
+  }
+
   /* Results */
   .results-count { font-size: 13px; color: #888; margin-bottom: 10px; display: none; }
 
@@ -167,6 +211,12 @@
   </div>
 
 
+  <!-- Moustache loader -->
+  <div class="mo-loader" id="moLoader">
+    <div class="moustache"></div>
+    <div class="mo-loader-text">Searching...</div>
+  </div>
+
   <!-- Results count -->
   <div class="results-count" id="resultsCount"></div>
 
@@ -236,6 +286,7 @@ const clearBtnEl = document.getElementById('clearBtn');
 const resultsEl = document.getElementById('results');
 const countEl = document.getElementById('resultsCount');
 const homeEl = document.getElementById('homeState');
+const moLoader = document.getElementById('moLoader');
 
 function score(item, q) {
   const words = q.toLowerCase().split(/\s+/).filter(Boolean);
@@ -258,10 +309,20 @@ function doSearch(q) {
     homeEl.style.display = 'block';
     resultsEl.innerHTML = '';
     countEl.style.display = 'none';
+    moLoader.classList.remove('active');
     return;
   }
 
   homeEl.style.display = 'none';
+  resultsEl.innerHTML = '';
+  countEl.style.display = 'none';
+  moLoader.classList.add('active');
+
+  setTimeout(() => { showResults(trimmed); }, 600);
+}
+
+function showResults(trimmed) {
+  moLoader.classList.remove('active');
 
   let items = activeCat === 'all' ? KB : KB.filter(i => i.cat === activeCat);
   const scored = items.map(i => ({ ...i, _s: score(i, trimmed) })).filter(i => i._s > 0).sort((a,b) => b._s - a._s);
