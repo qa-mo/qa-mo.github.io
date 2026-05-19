@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MoSearch – AI-powered Movember search</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f5f5f3;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    color: #1a1a1a;
+  }
+
+  .container { max-width: 720px; margin: 0 auto; }
+
+  /* Header */
+  .mo-header {
+    background: #111;
+    border-radius: 14px;
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .mo-logo { font-size: 24px; font-weight: 600; color: #fff; letter-spacing: -0.5px; }
+  .mo-logo span { color: #1DCEA0; }
+  .mo-tagline { font-size: 13px; color: #888; margin-top: 3px; }
+  .mo-badge {
+    background: rgba(29,206,160,0.15);
+    color: #1DCEA0;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(29,206,160,0.3);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  /* API key banner */
+  .api-banner {
+    background: #fff;
+    border: 1px solid #e8e8e4;
+    border-radius: 12px;
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .api-banner label { font-size: 13px; color: #666; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+  .api-banner input {
+    flex: 1;
+    min-width: 180px;
+    padding: 7px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    font-family: monospace;
+    background: #fafafa;
+    color: #333;
+  }
+  .api-banner input:focus { outline: none; border-color: #1DCEA0; }
+  .api-save {
+    padding: 7px 14px;
+    border-radius: 8px;
+    background: #111;
+    color: #fff;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .api-save:hover { background: #333; }
+  .api-note { font-size: 11px; color: #aaa; width: 100%; padding-left: 2px; }
+
+  /* Search */
+  .search-wrap { position: relative; margin-bottom: 1rem; }
+  .search-icon {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    width: 18px; height: 18px; color: #999; pointer-events: none;
+  }
+  #searchInput {
+    width: 100%;
+    padding: 12px 46px 12px 46px;
+    border-radius: 12px;
+    border: 1px solid #e0e0dc;
+    font-size: 15px;
+    background: #fff;
+    color: #1a1a1a;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  #searchInput:focus { outline: none; border-color: #1DCEA0; box-shadow: 0 0 0 3px rgba(29,206,160,0.12); }
+  #clearBtn {
+    position: absolute; right: 13px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: #aaa; cursor: pointer;
+    padding: 4px; display: none; line-height: 1;
+  }
+  #clearBtn svg { width: 16px; height: 16px; }
+  #clearBtn:hover { color: #555; }
+
+  /* Pills */
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
+  .pill {
+    padding: 6px 14px; border-radius: 20px;
+    border: 1px solid #ddd; font-size: 13px; cursor: pointer;
+    background: #fff; color: #666; transition: all 0.15s;
+  }
+  .pill.active { background: #111; color: #fff; border-color: #111; }
+  .pill:hover:not(.active) { background: #f5f5f3; border-color: #bbb; }
+
+  /* AI summary */
+  .ai-box {
+    background: #fff;
+    border: 1px solid #e0ede9;
+    border-left: 3px solid #1DCEA0;
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.25rem;
+    display: none;
+  }
+  .ai-label { font-size: 12px; font-weight: 600; color: #1DCEA0; margin-bottom: 7px; display: flex; align-items: center; gap: 6px; letter-spacing: 0.4px; }
+  .ai-text { font-size: 14px; color: #333; line-height: 1.7; }
+  .spinner {
+    display: inline-block; width: 13px; height: 13px;
+    border: 2px solid #1DCEA0; border-top-color: transparent;
+    border-radius: 50%; animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Results */
+  .results-count { font-size: 13px; color: #888; margin-bottom: 10px; display: none; }
+
+  .result-card {
+    background: #fff; border: 1px solid #e8e8e4; border-radius: 12px;
+    padding: 1rem 1.2rem; margin-bottom: 10px; cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s; text-decoration: none; display: block;
+  }
+  .result-card:hover { border-color: #bbb; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .result-top { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+  .cat-badge { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 12px; }
+  .cat-mental   { background: #e3f4ef; color: #0a7a5e; }
+  .cat-prostate { background: #e6f0fb; color: #1a5fa0; }
+  .cat-testicular { background: #fef3e0; color: #8a5200; }
+  .cat-fundraise { background: #f0eeff; color: #5040b0; }
+  .cat-about    { background: #f2f2ef; color: #444; }
+
+  .result-title { font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 5px; }
+  .result-snippet { font-size: 13px; color: #555; line-height: 1.55; }
+  .result-link { font-size: 12px; color: #1DCEA0; margin-top: 8px; display: flex; align-items: center; gap: 4px; }
+  .result-link svg { width: 11px; height: 11px; }
+
+  /* Home / empty state */
+  .home-state { text-align: center; padding: 2rem 1rem; }
+  .home-icon { font-size: 40px; margin-bottom: 12px; opacity: 0.25; }
+  .home-title { font-weight: 600; font-size: 15px; color: #333; margin-bottom: 6px; }
+  .home-sub { font-size: 13px; color: #888; margin-bottom: 1.2rem; }
+  .suggestions { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .sug-btn {
+    font-size: 13px; padding: 7px 14px; border-radius: 20px;
+    border: 1px solid #ddd; background: #fff; color: #555;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .sug-btn:hover { background: #f5f5f3; border-color: #bbb; }
+
+  .empty-state { text-align: center; padding: 2rem; color: #888; font-size: 14px; }
+  .empty-state strong { color: #333; }
+
+  /* Footer */
+  .mo-footer {
+    text-align: center; font-size: 12px; color: #bbb;
+    margin-top: 2rem; padding-top: 1.5rem;
+    border-top: 1px solid #e8e8e4;
+  }
+  .mo-footer a { color: #1DCEA0; text-decoration: none; }
+
+  @media (max-width: 500px) {
+    body { padding: 1rem 0.75rem; }
+    .mo-header { padding: 1rem 1.1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="mo-header">
+    <div>
+      <div class="mo-logo">Mo<span>Search</span></div>
+      <div class="mo-tagline">AI-powered search for everything Movember</div>
+    </div>
+    <div class="mo-badge">✦ AI-powered</div>
+  </div>
+
+  <!-- API key input -->
+  <div class="api-banner" id="apiBanner">
+    <label for="apiKeyInput">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+      Claude API key
+    </label>
+    <input type="password" id="apiKeyInput" placeholder="sk-ant-…" autocomplete="off" />
+    <button class="api-save" onclick="saveApiKey()">Save</button>
+    <div class="api-note">Your key is stored only in this browser tab and never sent anywhere except the Anthropic API directly. Get a free key at <a href="https://console.anthropic.com" target="_blank" style="color:#1DCEA0;">console.anthropic.com</a> — without a key, AI summaries are skipped but search still works.</div>
+  </div>
+
+  <!-- Search bar -->
+  <div class="search-wrap">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="searchInput" placeholder="Ask anything about men's health, fundraising, campaigns…" autocomplete="off" />
+    <button id="clearBtn" onclick="clearSearch()" aria-label="Clear search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- Category pills -->
+  <div class="pills" id="pills">
+    <button class="pill active" data-cat="all">All topics</button>
+    <button class="pill" data-cat="mental">Mental health</button>
+    <button class="pill" data-cat="prostate">Prostate cancer</button>
+    <button class="pill" data-cat="testicular">Testicular cancer</button>
+    <button class="pill" data-cat="fundraise">Fundraising</button>
+    <button class="pill" data-cat="about">About Movember</button>
+  </div>
+
+  <!-- AI summary box -->
+  <div class="ai-box" id="aiBox">
+    <div class="ai-label">
+      <span class="spinner" id="aiSpinner" style="display:none;"></span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      AI summary
+    </div>
+    <div class="ai-text" id="aiText"></div>
+  </div>
+
+  <!-- Results count -->
+  <div class="results-count" id="resultsCount"></div>
+
+  <!-- Results -->
+  <div id="results"></div>
+
+  <!-- Home state -->
+  <div id="homeState" class="home-state">
+    <div class="home-icon">🔍</div>
+    <div class="home-title">What would you like to know?</div>
+    <div class="home-sub">Try one of these to get started</div>
+    <div class="suggestions">
+      <button class="sug-btn" onclick="triggerSearch('How do I grow a Mo?')">How do I grow a Mo?</button>
+      <button class="sug-btn" onclick="triggerSearch('prostate cancer risk factors')">Prostate cancer risk factors</button>
+      <button class="sug-btn" onclick="triggerSearch('men mental health support')">Men's mental health support</button>
+      <button class="sug-btn" onclick="triggerSearch('testicular cancer symptoms')">Testicular cancer symptoms</button>
+      <button class="sug-btn" onclick="triggerSearch('how to donate to Movember')">How to donate</button>
+      <button class="sug-btn" onclick="triggerSearch('what is Movember')">What is Movember?</button>
+    </div>
+  </div>
+
+  <div class="mo-footer">
+    Built with Movember content · <a href="https://movember.com" target="_blank">movember.com</a> · Powered by Claude AI
+
+  </div>
+
+</div>
+
+<script>
+const KB = [
+  { id:1, cat:'mental', title:"Men's mental health", snippet:"Life throws curveballs. Movember provides expert info to help men cope and live happier, healthier, longer lives. Learn what to look for, when to take action, and how to support others around you.", url:"https://movember.com/mens-health/mental-health", tags:["mental health","depression","anxiety","wellbeing","support","emotional","cope","stress"] },
+  { id:2, cat:'mental', title:"The ALEC model – how to have the conversation", snippet:"ALEC stands for Ask, Listen, Encourage Action, Check In. A simple four-step framework to help you navigate a conversation with a mate who might be struggling. Developed with R U OK?", url:"https://movember.com/mens-health/mental-health", tags:["alec","ask","listen","encourage","check in","conversation","friend","struggling","support","talk"] },
+  { id:3, cat:'mental', title:"Movember Conversations tool", snippet:"An interactive tool that gives you the confidence to talk to the men in your life who might be going through a tough time. Practice real conversation scenarios online.", url:"https://conversations.movember.com", tags:["conversations","tool","chat","practice","talk","friend","support","interactive"] },
+  { id:4, cat:'mental', title:"Suicide prevention", snippet:"Suicide is largely preventable. Movember funds programs to reduce the rate of male suicide globally. If you need immediate help, reach out to your local crisis line.", url:"https://movember.com/mens-health/suicide-prevention", tags:["suicide","prevention","crisis","helpline","lifeline","mental health","emergency"] },
+  { id:5, cat:'mental', title:"Get mental health support", snippet:"If you're feeling low or overwhelmed, don't hesitate to reach out. Find local resources for men's mental health, crisis chat, and support services.", url:"https://movember.com/mens-health/get-support", tags:["support","resources","helpline","crisis","get help","low","overwhelmed"] },
+  { id:6, cat:'mental', title:"Spot the signs someone is struggling", snippet:"Can you spot a friend who's feeling low? Learn the signs — changes in behaviour, withdrawal, mood shifts — that someone may be struggling with their mental health.", url:"https://movember.com/mens-health/spot-the-signs", tags:["signs","symptoms","depression","struggling","behaviour","withdrawn","mood"] },
+  { id:7, cat:'prostate', title:"Prostate cancer – know your risk", snippet:"Prostate cancer is the most common cancer in men over 45. Risk is higher if you're over 50, Black or of African ancestry, or have a family history. Early detection is key.", url:"https://movember.com/men-s-health/prostate-cancer", tags:["prostate","cancer","risk","age","50","race","family history","detection","screening"] },
+  { id:8, cat:'prostate', title:"When to see a doctor about prostate cancer", snippet:"Often, early prostate cancer causes no symptoms. If you're 50+, or 40+ with a family history or African ancestry, talk to your doctor. Don't wait for symptoms.", url:"https://movember.com/men-s-health/prostate-cancer", tags:["doctor","gp","prostate","symptoms","screening","test","psa","check","40","50"] },
+  { id:9, cat:'prostate', title:"True North – prostate cancer support", snippet:"True North is a Movember-funded resource for men navigating prostate cancer. Covers treatments, sex and intimacy, urinary problems, exercise, diet, stress and more.", url:"https://truenorth.movember.com", tags:["true north","prostate","support","treatment","intimacy","sex","urinary","anxiety","living with"] },
+  { id:10, cat:'prostate', title:"Prostate cancer signs and symptoms", snippet:"Many men with early prostate cancer have no symptoms at all. Possible signs include trouble urinating or leaking urine. See your doctor even if you feel fine.", url:"https://movember.com/men-s-health/prostate-cancer/signs-and-symptoms", tags:["symptoms","signs","urinating","leaking","pain","prostate","early","detection"] },
+  { id:11, cat:'testicular', title:"Know Thy Nuts – testicular cancer awareness", snippet:"Testicular cancer is the #1 cancer in younger men aged 15–39, but it's highly curable when caught early. Learn to check yourself in three simple steps.", url:"https://movember.com/men-s-health/testicular-cancer", tags:["testicular","cancer","nuts","check","young","men","awareness","know thy nuts","april"] },
+  { id:12, cat:'testicular', title:"How to check your testicles", snippet:"Warm up in a shower, then with your thumb and finger roll each testicle to get to know what's normal. Check for lumps, swelling or pain. Do it monthly.", url:"https://movember.com/men-s-health/testicular-cancer", tags:["check","testicles","how to","self check","lump","swelling","pain","shower","monthly"] },
+  { id:13, cat:'testicular', title:"Nuts & Bolts – testicular cancer resource", snippet:"Nuts & Bolts is Movember's go-to website for straight-talking testicular cancer information, guidance and support – from diagnosis through treatment to life afterwards.", url:"https://nutsandbolts.movember.com", tags:["nuts and bolts","testicular","diagnosis","treatment","support","resource","guide"] },
+  { id:14, cat:'fundraise', title:"Grow a Mo (Movember)", snippet:"Grow a moustache during November to raise funds and awareness for men's health. Sign up, start your Mo Space, share it with friends and collect donations.", url:"https://movember.com/support-us/grow", tags:["grow","moustache","mustache","mo","november","fundraise","sign up","hairy","face"] },
+  { id:15, cat:'fundraise', title:"Move for mental health", snippet:"Move 60 miles during November – representing the 60 men lost to suicide every hour globally. Walk, run, ride or swim your way to making a difference.", url:"https://movember.com/support-us/move", tags:["move","run","walk","60 miles","exercise","fitness","suicide","mental health","challenge"] },
+  { id:16, cat:'fundraise', title:"Host a Mo-ment event", snippet:"Organise a social event – a pub quiz, golf day, dinner or anything fun – and raise money for men's health. Movember provides resources and support to help you.", url:"https://movember.com/support-us/host", tags:["host","event","mo-ment","party","fundraiser","social","dinner","quiz","golf","fun"] },
+  { id:17, cat:'fundraise', title:"Donate to Movember", snippet:"Make a one-off or monthly donation directly to Movember. You can also donate to a specific person or team's fundraising page, or even donate cryptocurrency.", url:"https://movember.com/support-us/donate", tags:["donate","donation","give","money","cryptocurrency","monthly","one-off","gift"] },
+  { id:18, cat:'fundraise', title:"The Distinguished Gentleman's Ride", snippet:"Dapper riders on classic and vintage motorcycles unite to raise funds for men's health. Held annually in May, partnered with Movember for over a decade.", url:"https://movember.com/support-us/the-distinguished-gentlemans-ride", tags:["distinguished","gentleman","ride","motorcycle","bike","classic","vintage","may","dgr"] },
+  { id:19, cat:'fundraise', title:"Fundraise at work", snippet:"Bring Movember into your workplace. Organise company challenges, team fundraising pages, and events. Great fun and great for employee engagement.", url:"https://movember.com/support-us/fundraise-at-work", tags:["work","workplace","company","team","employee","engagement","corporate","office","challenge"] },
+  { id:20, cat:'about', title:"What is Movember?", snippet:"Movember is the leading charity changing the face of men's health globally. Founded in 2003, it focuses on mental health and suicide prevention, prostate cancer, and testicular cancer.", url:"https://movember.com/about/foundation", tags:["what is","movember","charity","foundation","mission","global","history","2003"] },
+  { id:21, cat:'about', title:"Movember's global impact", snippet:"Movember has funded over 1,320 men's health projects worldwide. Over 255,000 fundraisers participated in 2025, raising millions for research and support programs globally.", url:"https://movember.com/impact", tags:["impact","funded","projects","1320","research","global","money","results","change","outcomes"] },
+  { id:22, cat:'about', title:"The Movember Institute of Men's Health", snippet:"The Institute brings together the world's leading experts in men's health to accelerate research and translate findings into real-world impact.", url:"https://movember.com/movember-institute", tags:["institute","research","experts","science","findings","health","global"] },
+  { id:23, cat:'about', title:"Prostate cancer equity grants", snippet:"Movember is investing USD $4.4 million in 18 grants to create more equitable prostate cancer care, addressing disparities related to race, income, ethnicity and geography.", url:"https://movember.com/story/prostate-cancer-health-equity-grant-winners", tags:["equity","grants","funding","disparities","race","ethnicity","prostate","care","access"] },
+  { id:24, cat:'about', title:"Young men's health in a digital world", snippet:"A Movember report examines social media and male influencers on young men's health. Over 3,000 young men were surveyed about their online experiences.", url:"https://movember.com/movember-institute/masculinities-report", tags:["young","men","social media","digital","influencers","report","masculinity","online","research"] },
+  { id:25, cat:'about', title:"Partner with Movember", snippet:"Drive business outcomes, increase employee engagement and raise your organisation's profile by partnering with Movember. Current partners include Gillette, Amazon, and Lamborghini.", url:"https://movember.com/get-involved/partner-with-us", tags:["partner","sponsorship","business","corporate","gillette","amazon","brand","engage"] },
+];
+
+const catLabel = { mental:'Mental health', prostate:'Prostate cancer', testicular:'Testicular cancer', fundraise:'Fundraising', about:'About Movember' };
+const catClass = { mental:'cat-mental', prostate:'cat-prostate', testicular:'cat-testicular', fundraise:'cat-fundraise', about:'cat-about' };
+
+let activeCat = 'all';
+let searchTimeout = null;
+let lastQuery = '';
+let apiKey = localStorage.getItem('mo_claude_key') || '';
+
+const inp = document.getElementById('searchInput');
+const clearBtnEl = document.getElementById('clearBtn');
+const resultsEl = document.getElementById('results');
+const countEl = document.getElementById('resultsCount');
+const homeEl = document.getElementById('homeState');
+const aiBox = document.getElementById('aiBox');
+const aiText = document.getElementById('aiText');
+const aiSpinner = document.getElementById('aiSpinner');
+const apiInput = document.getElementById('apiKeyInput');
+const apiBanner = document.getElementById('apiBanner');
+
+if (apiKey) {
+  apiInput.value = apiKey;
+  apiBanner.style.display = 'none';
+}
+
+function saveApiKey() {
+  const val = apiInput.value.trim();
+  if (!val) return;
+  apiKey = val;
+  localStorage.setItem('mo_claude_key', val);
+  apiBanner.style.display = 'none';
+  if (inp.value.trim()) { lastQuery = ''; doSearch(inp.value); }
+}
+
+apiInput.addEventListener('keydown', e => { if (e.key === 'Enter') saveApiKey(); });
+
+function score(item, q) {
+  const words = q.toLowerCase().split(/\s+/).filter(Boolean);
+  let s = 0;
+  const haystack = (item.title + ' ' + item.snippet + ' ' + item.tags.join(' ')).toLowerCase();
+  for (const w of words) {
+    if (item.title.toLowerCase().includes(w)) s += 5;
+    if (item.tags.some(t => t.includes(w) || w.includes(t))) s += 3;
+    if (item.snippet.toLowerCase().includes(w)) s += 2;
+    if (haystack.includes(w)) s += 1;
+  }
+  return s;
+}
+
+async function getAISummary(query, items) {
+  if (!apiKey) return null;
+  const context = items.slice(0,4).map(i => `${i.title}: ${i.snippet}`).join('\n\n');
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 220,
+        messages: [{
+          role: 'user',
+          content: `You are MoSearch, Movember's friendly AI search assistant. Based on the user's query and relevant Movember content below, write a concise 2-3 sentence answer. Be warm and helpful. Don't say "based on the results" — just answer naturally.\n\nQuery: "${query}"\n\nContent:\n${context}`
+        }]
+      })
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.content?.[0]?.text || null;
+  } catch(e) {
+    return null;
+  }
+}
+
+async function doSearch(q) {
+  const trimmed = q.trim();
+  clearBtnEl.style.display = trimmed ? 'block' : 'none';
+
+  if (!trimmed) {
+    homeEl.style.display = 'block';
+    resultsEl.innerHTML = '';
+    countEl.style.display = 'none';
+    aiBox.style.display = 'none';
+    return;
+  }
+
+  homeEl.style.display = 'none';
+
+  let items = activeCat === 'all' ? KB : KB.filter(i => i.cat === activeCat);
+  const scored = items.map(i => ({ ...i, _s: score(i, trimmed) })).filter(i => i._s > 0).sort((a,b) => b._s - a._s);
+
+  countEl.style.display = 'block';
+  countEl.textContent = scored.length ? `${scored.length} result${scored.length !== 1 ? 's' : ''} found` : '';
+  resultsEl.innerHTML = '';
+
+  if (!scored.length) {
+    resultsEl.innerHTML = `<div class="empty-state">No results for "<strong>${trimmed}</strong>"<br><span style="font-size:12px; margin-top:4px; display:block;">Try different keywords or browse a category above</span></div>`;
+    aiBox.style.display = 'none';
+    return;
+  }
+
+  scored.slice(0, 6).forEach(item => {
+    const card = document.createElement('a');
+    card.className = 'result-card';
+    card.href = item.url;
+    card.target = '_blank';
+    card.rel = 'noopener';
+    card.innerHTML = `
+      <div class="result-top"><span class="cat-badge ${catClass[item.cat]}">${catLabel[item.cat]}</span></div>
+      <div class="result-title">${item.title}</div>
+      <div class="result-snippet">${item.snippet}</div>
+      <div class="result-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> ${item.url.replace('https://','')}</div>
+    `;
+    resultsEl.appendChild(card);
+  });
+
+  if (trimmed !== lastQuery) {
+    lastQuery = trimmed;
+    if (apiKey) {
+      aiBox.style.display = 'block';
+      aiText.textContent = '';
+      aiSpinner.style.display = 'inline-block';
+      const summary = await getAISummary(trimmed, scored);
+      aiSpinner.style.display = 'none';
+      if (summary) {
+        aiText.textContent = summary;
+      } else {
+        aiBox.style.display = 'none';
+      }
+    } else {
+      aiBox.style.display = 'none';
+    }
+  }
+}
+
+inp.addEventListener('input', () => {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => doSearch(inp.value), 300);
+});
+inp.addEventListener('keydown', e => { if (e.key === 'Enter') { clearTimeout(searchTimeout); doSearch(inp.value); } });
+
+function clearSearch() {
+  inp.value = ''; clearBtnEl.style.display = 'none';
+  homeEl.style.display = 'block'; resultsEl.innerHTML = '';
+  countEl.style.display = 'none'; aiBox.style.display = 'none';
+  lastQuery = ''; inp.focus();
+}
+
+document.getElementById('pills').addEventListener('click', e => {
+  const btn = e.target.closest('.pill');
+  if (!btn) return;
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  activeCat = btn.dataset.cat;
+  lastQuery = '';
+  if (inp.value.trim()) doSearch(inp.value);
+});
+
+function triggerSearch(q) {
+  inp.value = q; clearBtnEl.style.display = 'block'; doSearch(q);
+}
+</script>
+</body>
+</html>
