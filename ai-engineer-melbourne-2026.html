@@ -422,10 +422,32 @@
                 <div class="session-card">
                     <h3>1. Observability & LLM Evaluation at Scale <span class="badge">✓ Full Transcript</span></h3>
                     <div class="session-meta">
-                        <i class="fas fa-user"></i> Speaker: Sergei
+                        <i class="fas fa-user"></i> Speaker: Sergei (Canva)
                     </div>
                     <div class="session-topic">
-                        Covered trace sampling, enrichment, and a layered evaluation approach using offline evals, shadow runs, LLM-as-judge, human QA, and live metrics for assessing AI system quality.
+                        <strong>What it's about:</strong> How Canva built production-grade AI evaluation for 260M+ users through layered evaluation, trace sampling, and democratized quality assurance.
+                    </div>
+
+                    <h4>Key Takeaways:</h4>
+
+                    <div class="key-point">
+                        <h4>Five-Tier Layered Evaluation System</h4>
+                        <p>Build quality through multiple validation layers: (1) Offline evaluations with ground truth datasets, (2) Shadow runs against live traffic with zero user impact, (3) LLM-as-a-judge with model diversity, (4) Human QA review for domain expertise, and (5) Live metrics including AB tests and CSAT scores.</p>
+                        <p><strong>Real impact:</strong> One PM improved accuracy from 82% → 98% iteratively without engineering support.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>Traces Became the Language Teams Speak</h4>
+                        <p>At scale with 10M+ Help Assistant interactions/month, cross-team debugging collapsed to simply sharing trace IDs. Upload traces to separate database and sample to focus on automations, escalations, and issues - avoiding paying for 90% of low-value traces.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>Democratize Quality Evaluation</h4>
+                        <p>"Evals are everyone's job now" - PMs, QAs, and engineers all ship evals. Enable non-engineers to iterate on prompt improvements independently using offline evaluation frameworks. AI engineers are no longer the bottleneck.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Scale:</strong> 260M+ monthly active users, 20+ LLM evaluators processing 30k+ traces/day, 10k+ shadow run traces daily
                     </div>
                 </div>
 
@@ -436,7 +458,28 @@
                         <i class="fas fa-user"></i> Speaker: Andrew Fisher (VP Digital Science, Tetratherix)
                     </div>
                     <div class="session-topic">
-                        Explored how faster model iteration loops outperform static, high-capability approaches. Demonstrated that "fast-loop theory" with rapid feedback cycles produces better outcomes than relying solely on advanced models.
+                        <strong>What it's about:</strong> How faster iteration loops with cheaper models can outperform expensive frontier models when you have good feedback systems.
+                    </div>
+
+                    <h4>Key Takeaways:</h4>
+
+                    <div class="key-point">
+                        <h4>The Fastest Loop Wins</h4>
+                        <p>Mercury 2 (cheaper, faster model) achieved 100% pass rate in 6s mean time by iterating through feedback loops, while GPT-5.4 took 88s trying to one-shot solutions. When agents can iterate quickly with dense feedback and cheap error detection, speed beats raw intelligence.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>Dense Feedback Enables Fast Improvement</h4>
+                        <p>Requirements for fast loops: (1) Dense feedback with specific error messages, (2) Cheap error detection using deterministic checks before LLM, (3) Fast feedback process with no external latency. The test setup used 47 parallel tests with ~300ms execution and specific failure feedback.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>Validation Is the Product</h4>
+                        <p>"Small gains accumulate" - combining fast feedback with fast iteration compounds advantage over time. Build agent harnesses that support rapid run → validate → inform next turn loops.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Benchmark Results:</strong> Mercury 2: 100% pass, 6s mean. GPT-5.4 Mini: 100% pass, 41s mean. GPT-5.4: 100% pass, 88s mean. Gemini 2.5 Flash: 80% pass, 77s mean.
                     </div>
                 </div>
 
@@ -444,10 +487,26 @@
                 <div class="session-card">
                     <h3>3. Building Interactives at Scale Using AI <span class="badge">✓ Full Transcript</span></h3>
                     <div class="session-meta">
-                        <i class="fas fa-user"></i> Speaker: Stile representative
+                        <i class="fas fa-user"></i> Speaker: Stile Education
                     </div>
                     <div class="session-topic">
-                        Discussed automating interactive educational content creation through bootstrap, improvement workflows, and Armchair General build coordination to deploy 250+ simulations.
+                        <strong>What it's about:</strong> Automating deployment of 250+ interactive educational simulations using AI-driven bootstrap workflows and custom infrastructure.
+                    </div>
+
+                    <h4>Key Takeaways:</h4>
+
+                    <div class="key-point">
+                        <h4>AI-Driven Bootstrap with Evaluation Loops</h4>
+                        <p>Core pattern: vibe-coded scripts with evaluation. Run discovery → migrate to monorepo → setup CI/deployment → test. Allow the agent to iteratively refine with `run_with_evaluation(retries=7)` until success criteria met. The code matters very little; the schema, tests, and guardrails matter.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>Good Engineering Practices Amplify with AI</h4>
+                        <p>"Don't sell yourself short" - AI amplifies both good practices and bad. Clean signal (treating warnings as errors) teaches agents to recognize quality. Organizations with strong foundations see AI multiply effectiveness; those with technical debt see problems multiply.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Scale:</strong> 250+ interactive simulations deployed, 1,978 agents monitored, 126 unclustered pipelines managed
                     </div>
                 </div>
 
@@ -455,10 +514,26 @@
                 <div class="session-card">
                     <h3>4. Coding Is 15% of Engineering Work <span class="badge">✓ Full Transcript</span></h3>
                     <div class="session-meta">
-                        <i class="fas fa-user"></i> Speaker: Je Cornwall
+                        <i class="fas fa-user"></i> Speaker: Je Cornwall (SEEK)
                     </div>
                     <div class="session-topic">
-                        Analyzed developer time allocation, showing coding represents only 15% of engineering effort. Demonstrated how identifying true system bottlenecks—not just coding speed—determines where AI tools create measurable impact.
+                        <strong>What it's about:</strong> Why focusing only on coding speed misses the real bottlenecks, and how to identify your actual constraints.
+                    </div>
+
+                    <h4>Key Takeaways:</h4>
+
+                    <div class="key-point">
+                        <h4>Coding Often Isn't Your Constraint</h4>
+                        <p>Work breakdown: Coding 15%, Collaboration 20%, Design 10%, L&D 20%, QA 20%, Other 15%. Activities AI cannot easily accelerate include collaboration, design (both require human judgment), L&D (learning requires time), and QA (requires domain expertise). Don't expect weekend results from coding AI when coding isn't the bottleneck.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>Measure Constraints, Then Design Targeted Interventions</h4>
+                        <p>Real constraint analysis revealed: Build & Test Experience -24 points, Decision Making -12 points, Cross-team Collaboration -15 points (vs benchmark). Each required different interventions beyond coding acceleration.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Results:</strong> +3 DXI points, 18,000 hours/year reclaimed, ~$1.5M/year productivity value, ~20% PR throughput increase
                     </div>
                 </div>
 
@@ -469,7 +544,23 @@
                         <i class="fas fa-user"></i> Speaker: Michael Zhang (Principal AI Engineer, MYOB)
                     </div>
                     <div class="session-topic">
-                        Outlined seven learnings for deploying production LLM systems: narrow scope first, progressive rollout, security-as-architecture, read-only defaults, legacy system integration, AI-assisted tooling, and reversible-by-default decisions.
+                        <strong>What it's about:</strong> How MYOB's 15-engineer team shipped AI chat to production safely through narrow scope, progressive rollout, and security-as-architecture.
+                    </div>
+
+                    <h4>Key Takeaways:</h4>
+
+                    <div class="key-point">
+                        <h4>Start Narrower Than You Think</h4>
+                        <p>DID NOT build: agent that does everything, general copilot, do-anything chat. DID build: small set of hero questions scoped to one domain, classified paths, only domain-relevant tools, read-only access, small set of golden answers for evaluation. "Narrow scope is what makes everything else possible. Bounded cost, latency, hallucination surface."</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>Security Is the Architecture, Not a Feature</h4>
+                        <p>Eight-layer defense: (1) Scope & topic lock, (2) Advice boundary, (3) Model choice for injection resistance, (4) Infra-level filters in BLOCK mode, (5) Input length cap, (6) Language stack deterministic checks, (7) Per-user rate limits, (8) Output sanitization. Multiple rounds of external pen testing before each rollout phase.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Approach:</strong> Progressive rollout (Week 1 small → beta → GA based on data), kill switch successfully used in production, multiple pen tests
                     </div>
                 </div>
 
@@ -477,10 +568,26 @@
                 <div class="session-card">
                     <h3>6. Multi-Armed Bandits: The Scientific Shotgun for Evals <span class="badge">✓ Full Transcript</span></h3>
                     <div class="session-meta">
-                        <i class="fas fa-user"></i> Speaker: Ron Au
+                        <i class="fas fa-user"></i> Speaker: Ron Au (Canva/Leonardo.Ai)
                     </div>
                     <div class="session-topic">
-                        Introduced bandit algorithms (epsilon-greedy, Thompson sampling) for efficient online evaluation, showing how adaptive allocation outperforms fixed A/B testing when exploring multiple model or prompt variations.
+                        <strong>What it's about:</strong> Using smart testing strategies (bandit algorithms) to find the best AI settings faster and cheaper than traditional A/B testing.
+                    </div>
+
+                    <h4>Key Takeaways:</h4>
+
+                    <div class="key-point">
+                        <h4>Bandit Allocation Reduces Regret vs Fixed Testing</h4>
+                        <p>Traditional A/B tests freeze with fixed allocation. Bandit allocation adaptively tightens toward evidence: Warm grows as confidence builds, Direct checked periodically, Playful exits early. Fixed exploration keeps paying for known losers; bandits minimize wasted effort.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>Thompson Sampling Optimizes Exploration</h4>
+                        <p>Key insight: As more data arrives, posterior distributions narrow. Sample from uncertainty → update beliefs → reallocate → repeat. At Chat 50: four wide overlapping distributions. At Chat 1,000: very narrow with Warm clearly dominant.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Application:</strong> Both online experimentation (traffic allocation) and offline evaluation (token budget allocation across model variants)
                     </div>
                 </div>
 
@@ -488,10 +595,31 @@
                 <div class="session-card">
                     <h3>7. Agents Don't Like Your APIs <span class="badge">✓ Full Transcript</span></h3>
                     <div class="session-meta">
-                        <i class="fas fa-user"></i> Speaker: Mike Chambers (AI Specialist & Senior Developer Advocate, AWS)
+                        <i class="fas fa-user"></i> Speaker: Mike Chambers (AWS)
                     </div>
                     <div class="session-topic">
-                        Demonstrated how agent-oriented API design differs fundamentally from human-facing interfaces. Presented four principles: outcomes over operations, flattened arguments, contextual error messages, and ruthless tool curation.
+                        <strong>What it's about:</strong> How to design APIs that agents can actually use effectively, with four key principles for agent-friendly design.
+                    </div>
+
+                    <h4>Key Takeaways:</h4>
+
+                    <div class="key-point">
+                        <h4>Principle 1: Outcomes, Not Operations</h4>
+                        <p>Bad: 12 granular tools requiring 10+ API calls to answer one question. Good: 5 outcome-oriented tools where each completes a full workflow (get_latest_invoice_status, find_overdue_invoices, generate_invoice_report). One call replaces 10+, reducing tokens and errors by orders of magnitude.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>Principle 2: Flatten Arguments</h4>
+                        <p>Bad: Nested dict with ambiguous structure. Good: Explicit typed parameters like `def search_invoices(email: str, status: Literal["all", "draft", "sent"], limit: int = 20)`. Flatten hierarchies; make parameters explicit and typed.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>Principle 3: Instructions Are Context</h4>
+                        <p>Bad: "Not found" (404). Good: "No customer found with email 'alice@acme.com'. Use search_invoices_by_amount() to search by amount range instead." Error messages should guide agents toward alternative paths.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>AWS Guidelines:</strong> Tools per server <50, Parameters per tool <8, Response size <10KB, Naming: domain_noun_verb
                     </div>
                 </div>
 
@@ -502,7 +630,28 @@
                         <i class="fas fa-user"></i> Speaker: Jay Wren (StackQL)
                     </div>
                     <div class="session-topic">
-                        Proposed treating infrastructure as queryable data layers via StackQL/Steampipe, with policy gates (Cedar), semantic tool filtering, and OpenTelemetry tracing to safely govern autonomous agents.
+                        <strong>What it's about:</strong> Treating infrastructure as queryable data with SQL, adding policy gates, and using semantic tool selection for safe agent access.
+                    </div>
+
+                    <h4>Key Takeaways:</h4>
+
+                    <div class="key-point">
+                        <h4>Query Live Infrastructure State, Not Static Files</h4>
+                        <p>Problem: Desired state (code) diverges from live state (actual cloud). Solution: Steampipe/StackQL expose live cloud APIs as SQL tables. Query: `SELECT account_id, instance_id FROM aws_ec2_instance WHERE instance_state = 'running'`. One SQL dialect for 150+ cloud plugins.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>Four-Layer Safe Agent Architecture</h4>
+                        <p>Layer 1: State as queryable data (SQL over APIs). Layer 2: Skills as reusable runbooks (~100 tokens per skill). Layer 3: AI gateway for governance (model routing, tool filtering, observability). Layer 4: Cedar policy engine for authorization guardrails.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>Semantic Tool Selection Scales Beyond Prompts</h4>
+                        <p>From 200+ registered tools, retrieve top 5 relevant for each request. "Tool selection becomes a retrieval problem: smaller prompts, less confusion, scales to thousands." Avoids bloating context with irrelevant tools.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Example:</strong> Poisoned log tries to rotate prod credentials → Cedar policy denies (not in any permit) → "Denied tool call, not a breach"
                     </div>
                 </div>
 
@@ -510,10 +659,31 @@
                 <div class="session-card">
                     <h3>9. Agentic Healing in Production <span class="badge">✓ Full Transcript</span></h3>
                     <div class="session-meta">
-                        <i class="fas fa-user"></i> Speaker: Jack McNicol (Founding Engineer, SuperIT)
+                        <i class="fas fa-user"></i> Speaker: Jack McNicol (SuperIT)
                     </div>
                     <div class="session-topic">
-                        Outlined workflows for autonomous issue resolution: agentic health checks, flow state optimization, "back pressure" testing, and event-driven agent scheduling for code debt and architecture audits.
+                        <strong>What it's about:</strong> Autonomous issue detection and remediation workflows, with PR as the guardrail for agent-driven fixes.
+                    </div>
+
+                    <h4>Key Takeaways:</h4>
+
+                    <div class="key-point">
+                        <h4>Three-Tier Event Urgency System</h4>
+                        <p>Events (highest urgency): Sentry errors, Logfire alerts, Linear bugs, Slack messages → Workflow: Triage → Discovery → RCA → Solution → Proof. Recurring (lowest urgency): Dependabot, security scans → Cron-scheduled to plan token costs.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>PR Is the Guardrail, Not the Gate</h4>
+                        <p>Let agents run wild behind PR boundary. Stack reviewers (Greptile, Cursor BugBot, Claude Code Review) complement human review. Workflow: Events → Solution → Pull Request (Agent Review + Security + Tests) → Merge Queue.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>Foundation Quality Multiplies with Automation</h4>
+                        <p>"Agents multiply what you already have - foundations or debt. Skip the foundation and you get automation confidently making things worse." Investment in code quality, test coverage, and deterministic checks pays exponential returns when agents automate at scale.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Key Philosophy:</strong> Warnings = errors. Clean signal teaches agents quality standards; noisy builds teach that warnings don't matter.
                     </div>
                 </div>
 
@@ -521,10 +691,26 @@
                 <div class="session-card">
                     <h3>10. Scalable Support for 260M+ MAU <span class="badge">✓ Full Transcript</span></h3>
                     <div class="session-meta">
-                        <i class="fas fa-user"></i> Speaker: Canva representatives
+                        <i class="fas fa-user"></i> Speakers: Sergey Iakovlev & Sahil Bahl (Canva)
                     </div>
                     <div class="session-topic">
-                        Detailed layered evaluation architecture for customer support AI: offline evals → shadow runs → LLM-as-judge → human QA → live metrics, with async PII redaction and trace enrichment for production safety.
+                        <strong>What it's about:</strong> How Canva scaled AI-powered customer support through layered evaluation, trace sampling, and async PII redaction.
+                    </div>
+
+                    <h4>Key Takeaways:</h4>
+
+                    <div class="key-point">
+                        <h4>Five-Tier Evaluation for Every Change</h4>
+                        <p>(1) Offline: 150 labelled tickets, test changes, ship if ≥threshold. (2) Shadow Runs: 10k+ traces/day, zero impact. (3) LLM-as-Judge: 20+ evaluators, 30k+ traces/day. (4) Human QA: Weekly reviews. (5) Live Metrics: CSAT, AB tests. Week 5 CSAT dropped 12 points → trace deep-dive → fix shipped Week 6.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>Async PII Redaction and Trace Sampling</h4>
+                        <p>Async PII redaction: Shouldn't affect runtime. Redaction pipeline runs async for safe trace analysis. Trace sampling: High volume → focus on automations, escalations, issues. Avoids paying for 90% of low-value traces.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Scale:</strong> 260M+ MAU, 10M+ Help Assistant interactions/month, 9 architectural components, 10+ agentic flows
                     </div>
                 </div>
             </div>
