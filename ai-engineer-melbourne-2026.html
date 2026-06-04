@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Engineer Melbourne 2026 - Day 1 Summary</title>
+    <title>AI Engineer Melbourne 2026 - Conference Summary</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -207,6 +207,40 @@
             background: #cbd5e0;
         }
 
+        .day-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 1rem;
+        }
+
+        .day-badge.day-1 {
+            background: #667eea;
+        }
+
+        .day-badge.day-2 {
+            background: #48bb78;
+        }
+
+        .day-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .day-section h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
         .quick-links {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -292,9 +326,9 @@
 </head>
 <body>
     <div class="header">
-        <h1>AI Engineer Melbourne 2026 - Day 1</h1>
+        <h1>AI Engineer Melbourne 2026</h1>
         <div class="meta">
-            <i class="fas fa-calendar"></i> June 3, 2026 &nbsp;|&nbsp;
+            <i class="fas fa-calendar"></i> June 3-4, 2026 &nbsp;|&nbsp;
             <i class="fas fa-map-marker-alt"></i> Melbourne, Australia
         </div>
     </div>
@@ -302,7 +336,8 @@
     <nav class="nav-tabs">
         <div class="nav-tabs-inner">
             <a href="#overview" class="nav-tab active" data-tab="overview">Overview</a>
-            <a href="#key-sessions" class="nav-tab" data-tab="key-sessions">7 Key Sessions</a>
+            <a href="#day-1" class="nav-tab" data-tab="day-1">Day 1 (June 3)</a>
+            <a href="#day-2" class="nav-tab" data-tab="day-2">Day 2 (June 4)</a>
             <a href="#all-sessions" class="nav-tab" data-tab="all-sessions">Full Schedule</a>
             <a href="#resources" class="nav-tab" data-tab="resources">Resources</a>
         </div>
@@ -325,46 +360,30 @@
                 </div>
 
                 <h3>What I captured</h3>
-                <p>I was able to get full transcripts and detailed notes from <strong>7 sessions</strong> that were available in the live caption system:</p>
+                <p>I was able to get full transcripts from sessions across both days:</p>
+                <ul class="simple-list">
+                    <li><strong>Day 1 (June 3):</strong> 10 sessions from the Software Engineering track</li>
+                    <li><strong>Day 2 (June 4):</strong> 4 sessions including Jeremy Howard's keynote</li>
+                </ul>
 
                 <div class="quick-links">
-                    <a href="#session-1" class="quick-link">
-                        <i class="fas fa-robot"></i>
-                        <div>Building Long-Running AI Agents</div>
+                    <a href="#day-1" class="quick-link" data-tab-link="day-1">
+                        <i class="fas fa-calendar-day"></i>
+                        <div>Day 1 Sessions<br><small>(10 talks)</small></div>
                     </a>
-                    <a href="#session-2" class="quick-link">
-                        <i class="fas fa-shield-alt"></i>
-                        <div>Securing AI Systems</div>
-                    </a>
-                    <a href="#session-3" class="quick-link">
-                        <i class="fas fa-chart-line"></i>
-                        <div>Optimizing AI Performance</div>
-                    </a>
-                    <a href="#session-4" class="quick-link">
-                        <i class="fas fa-users"></i>
-                        <div>AI Governance Panel</div>
-                    </a>
-                    <a href="#session-5" class="quick-link">
-                        <i class="fas fa-code"></i>
-                        <div>Flue: Agent Framework</div>
-                    </a>
-                    <a href="#session-6" class="quick-link">
-                        <i class="fas fa-headset"></i>
-                        <div>Canva Support at Scale</div>
-                    </a>
-                    <a href="#session-7" class="quick-link">
-                        <i class="fas fa-star"></i>
-                        <div>Leadership & Team Success</div>
+                    <a href="#day-2" class="quick-link" data-tab-link="day-2">
+                        <i class="fas fa-calendar-check"></i>
+                        <div>Day 2 Sessions<br><small>(4 talks)</small></div>
                     </a>
                 </div>
 
                 <div class="info-box">
-                    <strong>📌 Important Note:</strong> 7 out of 108 sessions have full transcripts. Early morning sessions like "Token Town" and "Everything Is a Factory" rolled off the live caption buffer before I could capture them. <strong>Check back after June 4</strong> - full archives should be published on the <a href="https://webdirections.org/ai-engineer/" target="_blank" style="color: #2c7a7b; text-decoration: underline;">official website</a>.
+                    <strong>📌 Important Note:</strong> Transcripts are available for the Software Engineering track sessions from both days. Full conference archives should be published on the <a href="https://webdirections.org/ai-engineer/" target="_blank" style="color: #2c7a7b; text-decoration: underline;">official website</a>.
                 </div>
             </div>
 
             <div class="section">
-                <h2>Main Themes from Day 1</h2>
+                <h2>Main Themes from the Conference</h2>
 
                 <div class="key-point">
                     <h4>1. Production Reality, Not Prototypes</h4>
@@ -393,424 +412,172 @@
             </div>
         </div>
 
-        <!-- KEY SESSIONS TAB -->
-        <div id="key-sessions" class="tab-content">
+        <!-- DAY 1 TAB -->
+        <div id="day-1" class="tab-content">
             <div class="section">
-                <h2>7 Sessions with Full Details</h2>
-                <p>Here are detailed summaries of the 7 sessions I was able to capture, explained in plain language.</p>
+                <h2><span class="day-badge day-1">Day 1</span> June 3, 2026 - Software Engineering Track</h2>
+                <p>10 sessions from the Software Engineering track with full transcripts:</p>
 
                 <!-- SESSION 1 -->
-                <div class="session-card" id="session-1">
-                    <h3>1. Building Long-Running AI Agents <span class="badge">✓ Full Transcript</span></h3>
+                <div class="session-card">
+                    <h3>1. Observability & LLM Evaluation at Scale <span class="badge">✓ Full Transcript</span></h3>
                     <div class="session-meta">
-                        <i class="fas fa-clock"></i> 11:00-11:20 AM &nbsp;|&nbsp;
-                        <i class="fas fa-user"></i> Speakers: Pham Chi & Vamsi Ramakrishnan (Google Cloud)
+                        <i class="fas fa-user"></i> Speaker: Sergei
                     </div>
-
                     <div class="session-topic">
-                        <strong>What it's about:</strong> Building AI systems that can run for days or weeks, not just minutes - like a long-running project assistant instead of a quick calculator.
-                    </div>
-
-                    <h4>Key Takeaways in Plain English:</h4>
-
-                    <div class="key-point">
-                        <h4>Stop Treating AI as the Main Thing</h4>
-                        <p>Instead of building everything around a big AI model, treat AI like a tool in your toolbox. It's like using a calculator to help you do accounting - the calculator isn't the accountant, it's just one tool.</p>
-                        <p><em>Technical note: "We only use large language models as a dependency, not as a first class citizen."</em></p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Smaller Models Can Work Better</h4>
-                        <p>You don't always need the biggest, most expensive AI model. They're training smaller, specialized models that work faster and cheaper. Think: using a pocket calculator instead of a supercomputer for simple math.</p>
-                        <p><strong>Result:</strong> Training went from taking a week to just 3-5 hours.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Memory is the Hard Part</h4>
-                        <p>When AI agents run for days, they need to remember what they did yesterday without forgetting or getting confused. This is still an unsolved problem - like trying to keep a consistent diary that multiple people write in.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Real Example: Voice AI at Scale</h4>
-                        <p>They built a system that handles a million phone calls per day using Rust (a programming language known for speed and reliability). When you're handling that many calls, even tiny delays matter.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>The Philosophy: Own Your AI</h4>
-                        <p>"We believe that you should own your AI. The whole stack should be in your hands." - Meaning: don't be completely dependent on someone else's AI service that could change prices or features anytime.</p>
-                    </div>
-
-                    <div class="info-box">
-                        <strong>Real Project:</strong> They had an AI agent work on converting Linux kernel code to Rust for over 10 months, gradually improving from 12% success rate to much higher.
+                        Covered trace sampling, enrichment, and a layered evaluation approach using offline evals, shadow runs, LLM-as-judge, human QA, and live metrics for assessing AI system quality.
                     </div>
                 </div>
 
                 <!-- SESSION 2 -->
-                <div class="session-card" id="session-2">
-                    <h3>2. Securing AI Systems <span class="badge">✓ Full Transcript</span></h3>
+                <div class="session-card">
+                    <h3>2. Fail Fast, Fix Faster: Why Faster Models Can Beat Smarter Ones <span class="badge">✓ Full Transcript</span></h3>
                     <div class="session-meta">
-                        <i class="fas fa-clock"></i> 2:10-2:28 PM &nbsp;|&nbsp;
-                        <i class="fas fa-user"></i> Speaker: Adesh Gairola (CTO, raxIT Labs)
+                        <i class="fas fa-user"></i> Speaker: Andrew Fisher (VP Digital Science, Tetratherix)
                     </div>
-
                     <div class="session-topic">
-                        <strong>What it's about:</strong> How to keep AI systems safe when attackers can trick them with clever messages (called "prompt injection").
-                    </div>
-
-                    <h4>Key Takeaways in Plain English:</h4>
-
-                    <div class="key-point">
-                        <h4>You Can't Just Block Bad Inputs</h4>
-                        <p>"We can't filter our way out of prompt injection." Traditional security (like spam filters) doesn't work well with AI because attackers are too creative. It's like trying to childproof a house by listing every dangerous thing - you'll always miss something.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Design for When Things Go Wrong</h4>
-                        <p>Instead of hoping your AI won't be tricked, design it so that even if it IS tricked, it can't do anything harmful. Like how a car has airbags AND seatbelts - defense in depth.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>The Three S's Framework</h4>
-                        <p><strong>1. Scope (Limit What AI Can Do):</strong> Use two AI systems - one that handles dangerous tasks and one that processes untrusted user input. They can't both be compromised at once. Like having a security guard who checks people before they enter the main building.</p>
-
-                        <p><strong>2. Sign (Track Everything):</strong> Keep a record of every action the AI takes and who authorized it. Like a security camera log - if something goes wrong, you can trace it back.</p>
-
-                        <p><strong>3. Stop (Add Gates):</strong> Before the AI does anything important, run it through a policy checker that says "is this action allowed?" Like needing manager approval for big purchases.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>"Least Agency" Principle</h4>
-                        <p>Give your AI the minimum amount of power it needs to do its job. Don't give a customer service AI access to your entire database when it only needs to look up orders.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Track Sensitive Information</h4>
-                        <p>If personal information (like names, emails, addresses) goes into the AI system, track where it goes and make sure it doesn't leak out. Like putting "confidential" stickers on sensitive documents.</p>
-                    </div>
-
-                    <div class="highlight-box">
-                        <h3>Bottom Line</h3>
-                        <p>Shift from <strong>hope-based security</strong> (hoping nothing goes wrong) to <strong>proof-based security</strong> (proving the system stays safe even when things go wrong).</p>
+                        Explored how faster model iteration loops outperform static, high-capability approaches. Demonstrated that "fast-loop theory" with rapid feedback cycles produces better outcomes than relying solely on advanced models.
                     </div>
                 </div>
 
                 <!-- SESSION 3 -->
-                <div class="session-card" id="session-3">
-                    <h3>3. Optimizing AI Performance <span class="badge">✓ Full Transcript</span></h3>
+                <div class="session-card">
+                    <h3>3. Building Interactives at Scale Using AI <span class="badge">✓ Full Transcript</span></h3>
                     <div class="session-meta">
-                        <i class="fas fa-clock"></i> 2:10-2:28 PM &nbsp;|&nbsp;
-                        <i class="fas fa-user"></i> Speaker: Ron Au (Canva/Leonardo.Ai)
+                        <i class="fas fa-user"></i> Speaker: Stile representative
                     </div>
-
                     <div class="session-topic">
-                        <strong>What it's about:</strong> Using "multi-armed bandits" (a smart testing strategy) to find the best AI settings faster and cheaper than traditional A/B testing.
-                    </div>
-
-                    <h4>Key Takeaways in Plain English:</h4>
-
-                    <div class="key-point">
-                        <h4>What's a Multi-Armed Bandit?</h4>
-                        <p>Imagine you're at a casino with multiple slot machines. You want to find which one pays out best, but you also want to win money while testing. Multi-armed bandits help you balance "trying new machines" (exploration) vs "using the best machine you've found so far" (exploitation).</p>
-                        <p>For AI, this means automatically finding the best settings while still serving real users good results.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Real Example: Testing AI Personality</h4>
-                        <p>They tested four different conversation styles for their AI:</p>
-                        <ul class="simple-list">
-                            <li>Formal (professional and serious)</li>
-                            <li>Warm (friendly and approachable) - <strong>This won!</strong></li>
-                            <li>Direct (straight to the point)</li>
-                            <li>Playful (casual and fun) - This did worst</li>
-                        </ul>
-                        <p>The system automatically sent more users to "warm" as it learned it worked best, without waiting for a fixed test period to end.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Save Money on Testing</h4>
-                        <p>Instead of running thousands of tests with fixed numbers, use confidence intervals. Stop testing early when you're confident you've found the answer. Like stopping a taste test when 90% of people clearly prefer option A - you don't need to test 1000 more people.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Two Main Algorithms</h4>
-                        <p><strong>Epsilon Greedy:</strong> Simple approach - use the best option 90% of the time, try something random 10% of the time. Easy to understand but not the most efficient.</p>
-                        <p><strong>Thompson Sampling:</strong> Smarter approach using probability. Automatically balances exploration and exploitation based on how confident you are about each option.</p>
-                    </div>
-
-                    <div class="highlight-box">
-                        <h3>Why This Matters</h3>
-                        <p>Traditional A/B testing locks you into testing for a fixed time, even if one option is clearly winning. Multi-armed bandits adapt in real-time, finding the best option faster and serving better results to users during testing.</p>
+                        Discussed automating interactive educational content creation through bootstrap, improvement workflows, and Armchair General build coordination to deploy 250+ simulations.
                     </div>
                 </div>
 
                 <!-- SESSION 4 -->
-                <div class="session-card" id="session-4">
-                    <h3>4. AI Governance & Ethics Panel <span class="badge">✓ Full Transcript</span></h3>
+                <div class="session-card">
+                    <h3>4. Coding Is 15% of Engineering Work <span class="badge">✓ Full Transcript</span></h3>
                     <div class="session-meta">
-                        <i class="fas fa-clock"></i> 2:00-2:25 PM &nbsp;|&nbsp;
-                        <i class="fas fa-users"></i> Moderator: Andrew Murphy | Panelists: Aubrey Blanche, Hamish Songsmith, Nick Lothian
+                        <i class="fas fa-user"></i> Speaker: Je Cornwall
                     </div>
-
                     <div class="session-topic">
-                        <strong>What it's about:</strong> How organizations mess up when adding AI, and how to do it right - covering governance, ethics, and common mistakes.
-                    </div>
-
-                    <h4>Key Takeaways in Plain English:</h4>
-
-                    <div class="key-point">
-                        <h4>Top 3 Mistakes Companies Make</h4>
-
-                        <p><strong>1. Naive Risk Assessment</strong><br>
-                        Mistake: "We got security approval for one AI chatbot, so all our AI projects are secure now!"<br>
-                        Reality: Each AI use case is different. A customer service chatbot has different risks than an AI that writes code or processes financial data. You need separate assessments.</p>
-
-                        <p><strong>2. Wrong Success Metrics</strong><br>
-                        Mistake: "Our AI makes employees 20% faster!"<br>
-                        Reality: If you focus only on speed, you might get low-quality work done faster. Better to ask: "Does this actually help our customers?" or "Does this help us accomplish our mission?"</p>
-
-                        <p><strong>3. "Vibe-Based" Rollouts</strong><br>
-                        Mistake: "Everyone else is using ChatGPT for customer service, let's do it too!"<br>
-                        Reality: Just because something is trending doesn't mean it fits your organization. You need a strategy, not just copying what's popular.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Privacy & Model Access</h4>
-                        <p>There's debate about AI model access:</p>
-                        <ul class="simple-list">
-                            <li>Chinese companies often release "open" AI models anyone can use</li>
-                            <li>American companies (OpenAI, Anthropic, Google) keep their best models restricted</li>
-                            <li>Question: Is this about security concerns or protecting business interests?</li>
-                        </ul>
-                        <p>For privacy: Tools exist for removing personal info from data (PII redaction), and techniques like "federated learning" let you train AI without centralizing sensitive data.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>HR & Governance Reality</h4>
-                        <p>Some people think: "Just fire the HR department and let AI handle it!"<br>
-                        Panel's view: Bad idea. AI doesn't replace the need for proper people management and governance. You still need humans to handle the human side of work.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>How to Do It Right</h4>
-                        <ul class="simple-list">
-                            <li>Frame AI adoption around <strong>customer value or mission impact</strong>, not just "faster and cheaper"</li>
-                            <li>Encourage smart experimentation, but with proper oversight</li>
-                            <li>Build governance that scales - don't assume one approval covers everything</li>
-                            <li>Consider both the technical side and the human side</li>
-                        </ul>
-                    </div>
-
-                    <div class="highlight-box">
-                        <h3>Key Quote</h3>
-                        <p>"The most common mistake companies make when rolling out AI is assuming that because they've done the compliance framework for one implementation, it extends to all other uses."</p>
+                        Analyzed developer time allocation, showing coding represents only 15% of engineering effort. Demonstrated how identifying true system bottlenecks—not just coding speed—determines where AI tools create measurable impact.
                     </div>
                 </div>
 
                 <!-- SESSION 5 -->
-                <div class="session-card" id="session-5">
-                    <h3>5. Flue: The Agent Harness Framework <span class="badge">✓ Full Transcript</span></h3>
+                <div class="session-card">
+                    <h3>5. From Zero to Production: Shipping LLM Products Safely <span class="badge">✓ Full Transcript</span></h3>
                     <div class="session-meta">
-                        <i class="fas fa-clock"></i> 5:10-5:28 PM &nbsp;|&nbsp;
-                        <i class="fas fa-user"></i> Speaker: Michael Hart (Senior Principal Engineer, Cloudflare)
+                        <i class="fas fa-user"></i> Speaker: Michael Zhang (Principal AI Engineer, MYOB)
                     </div>
-
                     <div class="session-topic">
-                        <strong>What it's about:</strong> Flue is a headless TypeScript framework for building AI agents that can be programmed and deployed anywhere - think of it as a way to create custom AI workers that run automatically.
-                    </div>
-
-                    <h4>Key Takeaways in Plain English:</h4>
-
-                    <div class="key-point">
-                        <h4>What is Flue?</h4>
-                        <p>Flue is a framework for building AI agents that run without a user interface ("headless"). Unlike interactive tools like Claude Code that you click around in, Flue lets you write code that controls AI agents automatically.</p>
-                        <p>Think of it like: writing a robot script that does tasks for you, instead of manually clicking buttons yourself.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Two Types of AI Workers</h4>
-                        <p><strong>1. Workflows (Run and Return):</strong> Do one job and finish. Like sending an errand runner to the store - they go, buy what you need, come back, and they're done.</p>
-                        <p><strong>2. Agents (Long-Running with Identity):</strong> Stay active and keep working over time. Like hiring an assistant who checks your email every day and handles things continuously.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Works Everywhere</h4>
-                        <p>Flue can run on any platform: Node, Deno, Vercel, Cloudflare Workers, and more. It's "platform-agnostic" - meaning you write it once and deploy it anywhere.</p>
-                        <p>Like writing a recipe that works in any kitchen, not just one specific brand of oven.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Real-World Example: Astro CMS</h4>
-                        <p>Astro (a popular website builder) uses Flue for their GitHub issue triage. When someone reports a bug:</p>
-                        <ul class="simple-list">
-                            <li>Flue automatically investigates the issue</li>
-                            <li>Does root cause analysis (figures out what's wrong)</li>
-                            <li>No human needs to manually sort through every bug report</li>
-                        </ul>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Cloudflare's Internal Use: "Cloudflare OS"</h4>
-                        <p>Cloudflare built an internal platform where both technical and non-technical employees can:</p>
-                        <ul class="simple-list">
-                            <li>Access a library of pre-built "skills" (reusable AI capabilities)</li>
-                            <li>Create isolated workspaces for different teams</li>
-                            <li>Run multiple AI agents for different purposes</li>
-                        </ul>
-                        <p>It's like having an app store of AI helpers inside the company.</p>
-                    </div>
-
-                    <div class="highlight-box">
-                        <h3>Status & Availability</h3>
-                        <p>Flue is pre-1.0 (still being refined) but approaching its official release. It's completely written in TypeScript and fully programmable.</p>
-                        <p><strong>Who it's for:</strong> Developers who want to automate AI tasks without relying on interactive tools.</p>
+                        Outlined seven learnings for deploying production LLM systems: narrow scope first, progressive rollout, security-as-architecture, read-only defaults, legacy system integration, AI-assisted tooling, and reversible-by-default decisions.
                     </div>
                 </div>
 
                 <!-- SESSION 6 -->
-                <div class="session-card" id="session-6">
-                    <h3>6. How Canva Built Agentic Support at Scale <span class="badge">✓ Full Transcript</span></h3>
+                <div class="session-card">
+                    <h3>6. Multi-Armed Bandits: The Scientific Shotgun for Evals <span class="badge">✓ Full Transcript</span></h3>
                     <div class="session-meta">
-                        <i class="fas fa-clock"></i> 5:10-5:28 PM &nbsp;|&nbsp;
-                        <i class="fas fa-users"></i> Speakers: Sergey Iakovlev & Sahil Bahl (Senior ML Engineers, Canva)
+                        <i class="fas fa-user"></i> Speaker: Ron Au
                     </div>
-
                     <div class="session-topic">
-                        <strong>What it's about:</strong> How Canva built and scaled AI-powered customer support to serve 250+ million users, focusing on observability (tracking what AI is doing) and evaluation (measuring if it's working well).
-                    </div>
-
-                    <h4>Key Takeaways in Plain English:</h4>
-
-                    <div class="key-point">
-                        <h4>The Challenge: Supporting 250M+ Users with AI</h4>
-                        <p>Canva serves over 250 million users. That's a LOT of customer support requests. They needed AI to help, but had to make sure it worked reliably at massive scale.</p>
-                        <p>Like running a restaurant that serves millions of meals a day - you need systems to ensure quality stays consistent.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Observability: Tracking What AI Does</h4>
-                        <p><strong>The Problem:</strong> "You pay for all the traces that you capture" - tracking every single AI interaction is expensive.</p>
-                        <p><strong>Solution: Trace Sampling:</strong> Instead of recording everything, they sample (record a portion) and use async jobs to enrich the data later.</p>
-                        <p>Think of it like: instead of video recording every customer interaction, you take snapshots and fill in details later when needed.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Shadow Run Testing (Zero User Impact)</h4>
-                        <p>When testing a new version of their AI support system:</p>
-                        <ul class="simple-list">
-                            <li>Run the new version alongside live traffic</li>
-                            <li>Users only see the old, proven version</li>
-                            <li>Compare results between old and new in the background</li>
-                            <li>If new version works better, gradually roll it out</li>
-                        </ul>
-                        <p>Like test-driving a new recipe in the back kitchen while still serving the regular menu to customers.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>LLM-as-Judge: Having AI Grade AI</h4>
-                        <p>Instead of humans manually reviewing thousands of AI responses, they use AI to evaluate AI.</p>
-                        <p><strong>Key approach: Multiple narrow judges</strong> - Instead of one AI judging everything, have specialized AIs check different aspects:</p>
-                        <ul class="simple-list">
-                            <li>One AI checks if the tone is friendly</li>
-                            <li>Another checks if information is accurate</li>
-                            <li>Another checks if the response is helpful</li>
-                        </ul>
-                        <p>Like having specialized food critics instead of one person judging everything.</p>
-                    </div>
-
-                    <div class="key-point">
-                        <h4>Multi-Layered Evaluation</h4>
-                        <p>They don't rely on just one way to measure quality. They use:</p>
-                        <ul class="simple-list">
-                            <li><strong>Automated tests</strong> (AI checking AI)</li>
-                            <li><strong>Human review</strong> (spot-checking important cases)</li>
-                            <li><strong>Live metrics</strong> (tracking real user satisfaction)</li>
-                            <li><strong>A/B testing</strong> (comparing different versions)</li>
-                        </ul>
-                    </div>
-
-                    <div class="highlight-box">
-                        <h3>Key Principles</h3>
-                        <ul class="simple-list">
-                            <li><strong>Traces as primary artifacts:</strong> Recording what happened is crucial for debugging and improvement</li>
-                            <li><strong>Multi-layered evaluation:</strong> Don't rely on just one measurement method</li>
-                            <li><strong>Democratize quality assurance:</strong> Everyone on the team should be able to check quality, not just specialists</li>
-                        </ul>
+                        Introduced bandit algorithms (epsilon-greedy, Thompson sampling) for efficient online evaluation, showing how adaptive allocation outperforms fixed A/B testing when exploring multiple model or prompt variations.
                     </div>
                 </div>
 
                 <!-- SESSION 7 -->
-                <div class="session-card" id="session-7">
-                    <h3>7. Leadership Panel: AI & Team Success <span class="badge">✓ Full Transcript</span></h3>
+                <div class="session-card">
+                    <h3>7. Agents Don't Like Your APIs <span class="badge">✓ Full Transcript</span></h3>
                     <div class="session-meta">
-                        <i class="fas fa-clock"></i> End of Day 1 &nbsp;|&nbsp;
-                        <i class="fas fa-users"></i> Leadership Track Panel Discussion
+                        <i class="fas fa-user"></i> Speaker: Mike Chambers (AI Specialist & Senior Developer Advocate, AWS)
                     </div>
-
                     <div class="session-topic">
-                        <strong>What it's about:</strong> A frank discussion about how AI is affecting software teams, the limits of AI, and what leaders need to focus on to ensure their teams succeed.
+                        Demonstrated how agent-oriented API design differs fundamentally from human-facing interfaces. Presented four principles: outcomes over operations, flattened arguments, contextual error messages, and ruthless tool curation.
                     </div>
+                </div>
 
-                    <h4>Key Takeaways in Plain English:</h4>
-
-                    <div class="key-point">
-                        <h4>The Big Reality Check</h4>
-                        <p><strong>"You can't replace five seniors with five juniors with AI. That's what everyone's trying to do."</strong></p>
-                        <p>This was the most direct message of the panel. Companies think: "We'll hire cheaper junior developers and AI will make up the difference." The panelists say this doesn't work.</p>
-                        <p>Why? Experience matters. Senior developers know:</p>
-                        <ul class="simple-list">
-                            <li>Which problems to solve (and which to ignore)</li>
-                            <li>How to architect systems that scale</li>
-                            <li>What shortcuts will cause problems later</li>
-                            <li>How to mentor and guide others</li>
-                        </ul>
-                        <p>AI can help write code faster, but it can't replace wisdom and judgment.</p>
+                <!-- SESSION 8 -->
+                <div class="session-card">
+                    <h3>8. Infrastructure as Context: Building AI Control Planes <span class="badge">✓ Full Transcript</span></h3>
+                    <div class="session-meta">
+                        <i class="fas fa-user"></i> Speaker: Jay Wren (StackQL)
                     </div>
-
-                    <div class="key-point">
-                        <h4>Smaller Teams, Better Support</h4>
-                        <p>Modern teams can be smaller but deliver more - IF they have the right support structures:</p>
-                        <ul class="simple-list">
-                            <li>Good tools and infrastructure</li>
-                            <li>Clear processes</li>
-                            <li>Ability to focus without constant interruptions</li>
-                            <li>AI to handle repetitive tasks</li>
-                        </ul>
-                        <p>It's not about cramming more work onto fewer people. It's about removing obstacles so talented people can do their best work.</p>
+                    <div class="session-topic">
+                        Proposed treating infrastructure as queryable data layers via StackQL/Steampipe, with policy gates (Cedar), semantic tool filtering, and OpenTelemetry tracing to safely govern autonomous agents.
                     </div>
+                </div>
 
-                    <div class="key-point">
-                        <h4>Breaking Down Silos</h4>
-                        <p>Traditional boundaries (frontend vs backend, dev vs ops) are becoming less relevant. With AI assistance, engineers can work across more areas.</p>
-                        <p>But this doesn't mean one person does everything - it means teams collaborate more fluidly.</p>
+                <!-- SESSION 9 -->
+                <div class="session-card">
+                    <h3>9. Agentic Healing in Production <span class="badge">✓ Full Transcript</span></h3>
+                    <div class="session-meta">
+                        <i class="fas fa-user"></i> Speaker: Jack McNicol (Founding Engineer, SuperIT)
                     </div>
-
-                    <div class="key-point">
-                        <h4>Human-in-the-Loop Guardrails</h4>
-                        <p>When using AI for development, you need safety checks:</p>
-                        <ul class="simple-list">
-                            <li><strong>Data-driven rules</strong> based on past bugs and accessibility issues</li>
-                            <li><strong>Automated checks</strong> before code goes live</li>
-                            <li><strong>Human review</strong> for critical changes</li>
-                        </ul>
-                        <p>Think of it like spell-check in a word processor - it catches obvious mistakes, but you still need to think about what you're writing.</p>
+                    <div class="session-topic">
+                        Outlined workflows for autonomous issue resolution: agentic health checks, flow state optimization, "back pressure" testing, and event-driven agent scheduling for code debt and architecture audits.
                     </div>
+                </div>
 
-                    <div class="key-point">
-                        <h4>Leadership Accountability</h4>
-                        <p>The panel emphasized: if your team isn't thriving, that's a leadership problem, not a people problem.</p>
-                        <p>Leaders must ensure:</p>
-                        <ul class="simple-list">
-                            <li>People have what they need to succeed</li>
-                            <li>The environment supports growth and learning</li>
-                            <li>Expectations are clear and reasonable</li>
-                            <li>Team members feel valued and supported</li>
-                        </ul>
-                        <p><strong>Key message:</strong> Don't blame individuals or reduce headcount when the real issue is lack of support or poor systems.</p>
+                <!-- SESSION 10 -->
+                <div class="session-card">
+                    <h3>10. Scalable Support for 260M+ MAU <span class="badge">✓ Full Transcript</span></h3>
+                    <div class="session-meta">
+                        <i class="fas fa-user"></i> Speaker: Canva representatives
                     </div>
+                    <div class="session-topic">
+                        Detailed layered evaluation architecture for customer support AI: offline evals → shadow runs → LLM-as-judge → human QA → live metrics, with async PII redaction and trace enrichment for production safety.
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                    <div class="highlight-box">
-                        <h3>Bottom Line</h3>
-                        <p>AI is a tool that can amplify what good engineers do. It won't fix bad processes, replace experience, or make up for poor leadership. Focus on building strong teams with the right support, and use AI to help them do more of what they're already good at.</p>
+        <!-- DAY 2 TAB -->
+        <div id="day-2" class="tab-content">
+            <div class="section">
+                <h2><span class="day-badge day-2">Day 2</span> June 4, 2026 - Sessions</h2>
+                <p>4 sessions with full transcripts from Day 2:</p>
+
+                <!-- SESSION 1 -->
+                <div class="session-card">
+                    <h3>1. Growing on Purpose — The Work That Makes You <span class="badge">✓ Full Transcript</span></h3>
+                    <div class="session-meta">
+                        <i class="fas fa-user"></i> Speaker: Jeremy Howard (Answer.AI)
+                        <br><i class="fas fa-clock"></i> 23:04-23:47 UTC (Day 1 evening / Day 2 early morning)
+                    </div>
+                    <div class="session-topic">
+                        Explores psychological research on human flourishing, drawing from Self-Determination Theory. Contrasts eudaimonia (actualizing capabilities) with hedonia (frictionless pleasure). Warns against "junk flow"—the seductive but unproductive state in AI-assisted coding where developers feel productive without substantive output. Advocates for human creativity amplification rather than replacement, referencing Douglas Engelbart's vision of intelligence augmentation.
+                    </div>
+                </div>
+
+                <!-- SESSION 2 -->
+                <div class="session-card">
+                    <h3>2. Quality Evaluation in AI Systems <span class="badge">✓ Full Transcript</span></h3>
+                    <div class="session-meta">
+                        <i class="fas fa-user"></i> Speaker: Not identified
+                    </div>
+                    <div class="session-topic">
+                        Focuses on establishing consistent quality metrics across AI systems through traces, layered evaluations (combining LLM judges, human QA, and live metrics), and democratizing evaluation responsibilities across product, QA, and engineering teams. Key theme: "traces become the language we speak."
+                    </div>
+                </div>
+
+                <!-- SESSION 3 -->
+                <div class="session-card">
+                    <h3>3. Distributed LLM Inference <span class="badge">✓ Full Transcript</span></h3>
+                    <div class="session-meta">
+                        <i class="fas fa-user"></i> Speaker: Mic Neale
+                    </div>
+                    <div class="session-topic">
+                        Presents mesh-LLM, a peer-to-peer inference system enabling 480B-parameter models on commodity hardware via pipeline parallelism, speculation, and mixture-of-agents approaches. Emphasizes edge computing's 2-3x greater inference capacity than datacenters.
+                    </div>
+                </div>
+
+                <!-- SESSION 4 -->
+                <div class="session-card">
+                    <h3>4. Long-Horizon AI Tasks <span class="badge">✓ Full Transcript</span></h3>
+                    <div class="session-meta">
+                        <i class="fas fa-user"></i> Speaker: Zixuan Li (Z.ai/GLM-5.1)
+                    </div>
+                    <div class="session-topic">
+                        Discusses AI capabilities for extended autonomous reasoning (8+ hours), categorizing tasks as subjective (visual polish, completeness) or objective (measurable benchmarks). Highlights human interventions: checklists, verification gates, and replanning prompts.
                     </div>
                 </div>
             </div>
@@ -819,8 +586,21 @@
         <!-- ALL SESSIONS TAB -->
         <div id="all-sessions" class="tab-content">
             <div class="section">
-                <h2>Full Day 1 Schedule</h2>
-                <p>Here's everything that happened on Day 1. Sessions marked with <span class="badge">✓</span> have detailed summaries above.</p>
+                <h2>Full Conference Schedule</h2>
+                <p>Here's an overview of sessions from both days. Sessions with full transcripts are marked with <span class="badge">✓</span> in the Day 1 and Day 2 tabs.</p>
+
+                <div class="day-section">
+                    <h3><span class="day-badge day-1">Day 1</span> June 3, 2026 - Software Engineering Track</h3>
+                    <p>10 sessions with full transcripts available. See the Day 1 tab for details.</p>
+                </div>
+
+                <div class="day-section">
+                    <h3><span class="day-badge day-2">Day 2</span> June 4, 2026</h3>
+                    <p>4 sessions with full transcripts available. See the Day 2 tab for details.</p>
+                </div>
+
+                <h3>Day 1 Additional Context</h3>
+                <p>Beyond the Software Engineering track transcripts, Day 1 featured many other sessions across different tracks:</p>
 
                 <div class="warning-box">
                     <h4>📌 About Transcript Availability</h4>
@@ -939,7 +719,7 @@
     <footer>
         <p><strong>Compiled by:</strong> Mohinder Batra</p>
         <p><strong>Source:</strong> <a href="https://webdirections.org/ai-engineer/" target="_blank">AI Engineer Melbourne 2026</a></p>
-        <p><strong>Last Updated:</strong> June 3, 2026</p>
+        <p><strong>Last Updated:</strong> June 4, 2026</p>
     </footer>
 
     <script>
@@ -969,18 +749,20 @@
             link.addEventListener('click', function(e) {
                 e.preventDefault();
 
-                // Switch to key sessions tab
-                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                // Get the tab to switch to
+                const tabName = this.getAttribute('data-tab-link');
 
-                document.querySelector('[data-tab="key-sessions"]').classList.add('active');
-                document.getElementById('key-sessions').classList.add('active');
+                if (tabName) {
+                    // Switch to specified tab
+                    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
 
-                // Scroll to specific session
-                const target = this.getAttribute('href');
-                setTimeout(() => {
-                    document.querySelector(target).scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
+                    document.querySelector('[data-tab="' + tabName + '"]').classList.add('active');
+                    document.getElementById(tabName).classList.add('active');
+
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             });
         });
     </script>
